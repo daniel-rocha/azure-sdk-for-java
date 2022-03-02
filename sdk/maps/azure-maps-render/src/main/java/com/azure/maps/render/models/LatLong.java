@@ -1,5 +1,8 @@
 package com.azure.maps.render.models;
 
+/**
+ * Lat Long organizes latitude longitude
+ */
 public final class LatLong {
     private double latitude;
     private double longitude;

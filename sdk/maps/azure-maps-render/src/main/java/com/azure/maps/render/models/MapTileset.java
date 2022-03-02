@@ -5,7 +5,10 @@ import java.util.List;
 import com.azure.maps.render.implementation.helpers.MapTilesetPropertiesHelper;
 import com.azure.maps.render.implementation.models.MapTilesetPrivate;
 
-public class MapTileset {
+/**
+ * Public map tileset class
+ */
+public final class MapTileset {
     private String tilejson;
     private String name;
     private String description;
@@ -40,62 +43,118 @@ public class MapTileset {
         });
     }
 
+    /**
+     * get tile json
+     * @return
+     */
     public String getTileJson() {
         return this.tilejson;
     }
 
+    /**
+     * get name
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * get description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * get version
+     * @return
+     */
     public String getVersion() {
         return version;
     }
 
+    /**
+     * get attribution
+     * @return
+     */
     public String getAttribution() {
         return attribution;
     }
 
+    /**
+     * get template
+     * @return
+     */
     public String getTemplate() {
         return template;
     }
 
+    /**
+     * get legend
+     * @return
+     */
     public String getLegend() {
         return legend;
     }
 
+    /**
+     * get scheme
+     */
     public String getScheme() {
         return scheme;
     }
 
+    /**
+     * get tiles
+     * @return
+     */
     public List<String> getTiles() {
         return tiles;
     }
 
+    /**
+     * get grids
+     */
     public List<String> getGrids() {
         return grids;
     }
 
+    /**
+     * get data
+     * @return
+     */
     public List<String> getData() {
         return data;
     }
 
+    /**
+     * get min zoom
+     * @return
+     */
     public Integer getMinZoom() {
         return minZoom;
     }
 
+    /**
+     * get max zoom
+     * @return
+     */
     public Integer getMaxZoom() {
         return maxZoom;
     }
 
+    /**
+     * get bounds
+     */
     public BoundingBox getBounds() {
         return bounds;
     }
 
+    /**
+     * get center
+     * @return
+     */
     public Center getCenter() {
         return center;
     }   

@@ -116,6 +116,11 @@ public final class RenderClientBuilder {
         return this;
     }
 
+    /**
+     * Render service version
+     * @param version
+     * @return
+     */
     public RenderClientBuilder serviceVersion(RenderServiceVersion version) {
         this.serviceVersion = version;
         return this;

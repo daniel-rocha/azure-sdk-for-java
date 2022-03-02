@@ -2,6 +2,9 @@ package com.azure.maps.render;
 
 import com.azure.core.util.ServiceVersion;
 
+/**
+ * Contains the versions of the Render Service available for the clients.
+ */
 public enum RenderServiceVersion implements ServiceVersion{
      /**
      * Service version {@code 2.1}.

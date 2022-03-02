@@ -2,7 +2,10 @@ package com.azure.maps.render.models;
 
 import java.util.List;
 
-public class MapStaticImageOptions {
+/**
+ * Organize inputs for get map static image
+ */
+public final class MapStaticImageOptions {
     private RasterTileFormat format;
     private StaticMapLayer layer;
     private MapImageStyle style;

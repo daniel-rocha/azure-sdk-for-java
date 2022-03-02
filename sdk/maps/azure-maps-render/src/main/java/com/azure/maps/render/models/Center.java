@@ -3,7 +3,10 @@ package com.azure.maps.render.models;
 import java.util.List;
 import java.util.Objects;
 
-public class Center {
+/**
+ * Represents Center
+ */
+public final class Center {
     private LatLong coordinates;
     private int zoom;
 
