@@ -4,6 +4,9 @@ public final class LatLong {
     private double latitude;
     private double longitude;
 
+    /**
+     * Constructor
+     */
     public LatLong() {
     }
 

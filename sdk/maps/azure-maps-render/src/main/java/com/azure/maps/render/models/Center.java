@@ -7,11 +7,22 @@ public class Center {
     private LatLong coordinates;
     private int zoom;
 
+    /**
+     * 
+     * @param longitude
+     * @param latitude
+     * @param zoom
+     */
     public Center(double longitude, double latitude, double zoom) {
         this.coordinates = new LatLong(longitude, latitude);
         this.zoom = (int) zoom;
     }
 
+    /**
+     * 
+     * @param longitude
+     * @param latitude
+     */
     public Center(double longitude, double latitude) {
         this.coordinates = new LatLong(longitude, latitude);
     }
@@ -29,18 +40,34 @@ public class Center {
         this.coordinates = new LatLong(latitude, longitude);
     }
 
+    /**
+     * Returns the coordinates
+     * @return 
+     */
     public LatLong getCoordinates() {
         return this.coordinates;
     }
 
+    /**
+     * Sets the coordinates
+     * @param coordinates
+     */
     public void setCoordinates(LatLong coordinates) {
         this.coordinates = coordinates;
     }
 
+    /**
+     * Returns the zoom
+     * @return
+     */
     public int getZoom() {
         return this.zoom;
     }
 
+    /**
+     * Sets the zoom
+     * @param zoom
+     */
     public void setZoom(int zoom) {
         this.zoom = zoom;
     }
