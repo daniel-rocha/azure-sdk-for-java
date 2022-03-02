@@ -153,6 +153,12 @@ public final class RenderAsyncClient {
         return this.getMapTileWithResponse(options, null);
     }
 
+    /**
+     * 
+     * @param options Method arguments: tilesetId, tileIndex, timeStamp, tileSize, language, localizedMapView
+     * @param context
+     * @return
+     */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> getMapTileWithResponse(MapTileOptions options, Context context) {        
         return this.serviceClient.getMapTileWithResponseAsync(options.getTilesetID(), 
@@ -206,6 +212,16 @@ public final class RenderAsyncClient {
         return this.getMapTilesetWithResponse(tilesetId, null);
     }
     
+    /**
+     * 
+     * @param tilesetId A tileset is a collection of raster or vector data broken up into a uniform grid of square tiles
+     *     at preset zoom levels. Every tileset has a **tilesetId** to use when making requests. The **tilesetId** for
+     *     tilesets created using [Azure Maps Creator](https://aka.ms/amcreator) are generated through the [Tileset
+     *     Create API](https://docs.microsoft.com/en-us/rest/api/maps/tileset). The ready-to-use tilesets supplied by
+     *     Azure Maps are listed below. For example, microsoft.base.
+     * @param context
+     * @return
+     */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MapTileset>> getMapTilesetWithResponse(TilesetID tilesetId, Context context) {
         Mono<Response<MapTilesetPrivate>> responseMono = this.serviceClient.getMapTilesetWithResponseAsync(tilesetId);
@@ -270,6 +286,21 @@ public final class RenderAsyncClient {
         return this.getMapAttributionWithResponse(tilesetId, zoom, bounds, null);
     }
 
+    /**
+     * 
+     * @param tilesetId A tileset is a collection of raster or vector data broken up into a uniform grid of square tiles
+     *     at preset zoom levels. Every tileset has a **tilesetId** to use when making requests. The **tilesetId** for
+     *     tilesets created using [Azure Maps Creator](https://aka.ms/amcreator) are generated through the [Tileset
+     *     Create API](https://docs.microsoft.com/en-us/rest/api/maps/tileset). The ready-to-use tilesets supplied by
+     *     Azure Maps are listed below. For example, microsoft.base.
+     * @param zoom Zoom level for the desired map attribution
+     * @param bounds The string that represents the rectangular area of a bounding box. The bounds parameter is defined
+     *     by the 4 bounding box coordinates, with WGS84 longitude and latitude of the southwest corner followed by
+     *     WGS84 longitude and latitude of the northeast corner. The string is presented in the following format:
+     *     `[SouthwestCorner_Longitude, SouthwestCorner_Latitude, NortheastCorner_Longitude, NortheastCorner_Latitude]`.
+     * @param context
+     * @return
+     */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MapAttribution>> getMapAttributionWithResponse(TilesetID tilesetId, int zoom, BoundingBox bounds, Context context) {
         List<Double> boundList = new ArrayList<>();
@@ -320,6 +351,13 @@ public final class RenderAsyncClient {
         return this.getMapStateTileWithResponse(statesetId, tileIndex, null);
     }
 
+    /**
+     * 
+     * @param statesetId The stateset id
+     * @param tileIndex Parameter group
+     * @param context
+     * @return
+     */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> getMapStateTileWithResponse(String statesetId, TileIndex tileIndex, Context context) {
         return this.serviceClient.getMapStateTileWithResponseAsync(statesetId, tileIndex);
@@ -368,6 +406,11 @@ public final class RenderAsyncClient {
         return this.getCopyrightCaptionWithResponse(null);
     }
 
+    /**
+     * 
+     * @param context
+     * @return
+     */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CopyrightCaption>> getCopyrightCaptionWithResponse(Context context) {
         return this.serviceClient.getCopyrightCaptionWithResponseAsync(
@@ -803,6 +846,12 @@ public final class RenderAsyncClient {
         return this.getMapStaticImageWithResponse(options, null);
     }
 
+    /**
+     * 
+     * @param options Method arguments: format, layer, style, zoom, center, bounding box, height, width, language, localizedMapView, pins, path
+     * @param context
+     * @return
+     */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> getMapStaticImageWithResponse(MapStaticImageOptions options, Context context) {
         BoundingBox boundingBox = options.getBoundingBox();
@@ -869,6 +918,14 @@ public final class RenderAsyncClient {
         return this.getCopyrightFromBoundingBoxWithResponse(boundingBox, includeText, null);
     }
 
+    /**
+     * 
+     * @param boundingBox Parameter group
+     * @param includeText Yes/no value to exclude textual data from response. Only images and country names will be in
+     *     response.
+     * @param context
+     * @return
+     */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Copyright>> getCopyrightFromBoundingBoxWithResponse(BoundingBox boundingBox, boolean includeText, Context context) {
         LatLong southWest = boundingBox.getSouthWest();
@@ -929,6 +986,14 @@ public final class RenderAsyncClient {
         return this.getCopyrightForTileWithResponse(tileIndex, includeText, null);
     }
 
+    /**
+     * 
+     * @param tileIndex Parameter group
+     * @param includeText Yes/no value to exclude textual data from response. Only images and country names will be in
+     *     response.
+     * @param context
+     * @return
+     */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Copyright>> getCopyrightForTileWithResponse(TileIndex tileIndex, boolean includeText, Context context) {
         return this.serviceClient.getCopyrightForTileWithResponseAsync(
@@ -982,6 +1047,13 @@ public final class RenderAsyncClient {
         return this.getCopyrightForWorldWithResponse(includeText, null);
     }
 
+    /**
+     * 
+     * @param includeText Yes/no value to exclude textual data from response. Only images and country names will be in
+     *     response.
+     * @param context
+     * @return
+     */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Copyright>> getCopyrightForWorldWithResponse(boolean includeText, Context context) {
         return this.serviceClient.getCopyrightForWorldWithResponseAsync(
