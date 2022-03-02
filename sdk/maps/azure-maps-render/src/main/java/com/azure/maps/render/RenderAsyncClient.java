@@ -168,12 +168,10 @@ public final class RenderAsyncClient {
             options.getLanguage(), 
             options.getLocalizedMapView());
     }
-
+    
     /**
      * Applies to: S0 and S1 pricing tiers.
-     *
      * The Get Map Tileset API allows users to request metadata for a tileset.
-     *
      * @param tilesetId A tileset is a collection of raster or vector data broken up into a uniform grid of square tiles
      *     at preset zoom levels. Every tileset has a **tilesetId** to use when making requests. The **tilesetId** for
      *     tilesets created using [Azure Maps Creator](https://aka.ms/amcreator) are generated through the [Tileset
