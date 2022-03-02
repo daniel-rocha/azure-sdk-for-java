@@ -43,7 +43,7 @@ public final class RenderClient {
     private final RenderAsyncClient asyncClient;
 
     /**
-     * Initializes an instance of Searches client.
+     * Initializes an instance of Render client.
      *
      * @param serviceClient the service client implementation.
      */
