@@ -153,7 +153,10 @@ public final class RenderAsyncClient {
     }
 
     /**
-     * 
+     * The Get Map Tiles With Response API allows users to request map tiles in vector or raster formats typically to be integrated
+     * into a map control or SDK. Some example tiles that can be requested are Azure Maps road tiles, real-time Weather
+     * Radar tiles or the map tiles created using [Azure Maps Creator](https://aka.ms/amcreator). By default, Azure Maps
+     * uses vector tiles for its web map control (Web SDK) and Android SDK.
      * @param options Method arguments: tilesetId, tileIndex, timeStamp, tileSize, language, localizedMapView
      * @param context
      * @return
@@ -210,7 +213,7 @@ public final class RenderAsyncClient {
     }
     
     /**
-     * 
+     * The Get Map Tileset With Response API allows users to request metadata for a tileset with response.
      * @param tilesetId A tileset is a collection of raster or vector data broken up into a uniform grid of square tiles
      *     at preset zoom levels. Every tileset has a **tilesetId** to use when making requests. The **tilesetId** for
      *     tilesets created using [Azure Maps Creator](https://aka.ms/amcreator) are generated through the [Tileset
@@ -284,7 +287,8 @@ public final class RenderAsyncClient {
     }
 
     /**
-     * 
+     * The Get Map Attribution With Response API allows users to request map copyright attribution information for a section of a
+     * tileset with response.
      * @param tilesetId A tileset is a collection of raster or vector data broken up into a uniform grid of square tiles
      *     at preset zoom levels. Every tileset has a **tilesetId** to use when making requests. The **tilesetId** for
      *     tilesets created using [Azure Maps Creator](https://aka.ms/amcreator) are generated through the [Tileset
@@ -349,7 +353,9 @@ public final class RenderAsyncClient {
     }
 
     /**
-     * 
+     * Fetches state tiles in vector format typically to be integrated into indoor maps module of map control or SDK with response.
+     * The map control will call this API after user turns on dynamic styling (see [Zoom Levels and Tile
+     * Grid](https://docs.microsoft.com//azure/location-based-services/zoom-levels-and-tile-grid)).
      * @param statesetId The stateset id
      * @param tileIndex Parameter group
      * @param context
@@ -404,7 +410,8 @@ public final class RenderAsyncClient {
     }
 
     /**
-     * 
+     * Copyrights with response API is designed to serve copyright information for Render Tile service. In addition to basic
+     * copyright for the whole map, API is serving specific groups of copyrights for some countries.
      * @param context
      * @return
      */
@@ -844,7 +851,13 @@ public final class RenderAsyncClient {
     }
 
     /**
-     * 
+     * The static image service renders a user-defined, rectangular image containing a map section using a zoom level
+     * from 0 to 20. The static image service renders a user-defined, rectangular image containing a map section using a
+     * zoom level from 0 to 20. The supported resolution range for the map image is from 1x1 to 8192x8192. If you are
+     * deciding when to use the static image service over the map tile service, you may want to consider how you would
+     * like to interact with the rendered map. If the map contents will be relatively unchanging, a static map is a good
+     * choice. If you want to support a lot of zooming, panning and changing of the map content, the map tile service
+     * would be a better choice.
      * @param options Method arguments: format, layer, style, zoom, center, bounding box, height, width, language, localizedMapView, pins, path
      * @param context
      * @return
@@ -880,8 +893,7 @@ public final class RenderAsyncClient {
      *
      * @param format Desired format of the response. Value can be either _json_ or _xml_.
      * @param boundingBox Parameter group.
-     * @param includeText Yes/no value to exclude textual data from response. Only images and country names will be in
-     *     response.
+     * @param includeText Yes/no value to exclude textual data from response. Only images and country names will be in response.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -916,7 +928,8 @@ public final class RenderAsyncClient {
     }
 
     /**
-     * 
+     * Returns copyright information with response for a given bounding box. Bounding-box requests should specify the minimum and
+     * maximum longitude and latitude (EPSG-3857) coordinates.
      * @param boundingBox Parameter group
      * @param includeText Yes/no value to exclude textual data from response. Only images and country names will be in
      *     response.
@@ -984,7 +997,10 @@ public final class RenderAsyncClient {
     }
 
     /**
-     * 
+     * Copyrights API is designed to serve copyright information for Render Tile service. In addition to basic
+     * copyright for the whole map, API is serving specific groups of copyrights for some countries. Returns the
+     * copyright information for a given tile. To obtain the copyright information for a particular tile, the request
+     * should specify the tile's zoom level and x and y coordinates (see: Zoom Levels and Tile Grid).
      * @param tileIndex Parameter group
      * @param includeText Yes/no value to exclude textual data from response. Only images and country names will be in
      *     response.
@@ -1045,7 +1061,10 @@ public final class RenderAsyncClient {
     }
 
     /**
-     * 
+     * Copyrights API is designed to serve copyright information for Render Tile service. In addition to basic
+     * copyright for the whole map, API is serving specific groups of copyrights for some countries. Returns the
+     * copyright information for the world. To obtain the default copyright information for the whole world, do not
+     * specify a tile or bounding box.
      * @param includeText Yes/no value to exclude textual data from response. Only images and country names will be in
      *     response.
      * @param context

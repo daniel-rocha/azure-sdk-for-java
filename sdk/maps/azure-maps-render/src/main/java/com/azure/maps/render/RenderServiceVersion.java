@@ -6,9 +6,19 @@ import com.azure.core.util.ServiceVersion;
  * Contains the versions of the Render Service available for the clients.
  */
 public enum RenderServiceVersion implements ServiceVersion{
-     /**
-     * Service version {@code 2.1}.
-     */
+    /**
+    * Service version {@code 1.0}.
+    */
+    V1_0("1.0"),
+
+    /**
+    * Service version {@code 2.0}.
+    */
+    V2_0("2.0"),
+
+    /**
+    * Service version {@code 2.1}.
+    */
     V2_1("2.1");
 
     private final String version;
