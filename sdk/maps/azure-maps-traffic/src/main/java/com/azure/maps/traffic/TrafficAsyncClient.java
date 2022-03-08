@@ -4,28 +4,25 @@
 
 package com.azure.maps.traffic;
 
+import java.nio.ByteBuffer;
+
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.StreamResponse;
+import com.azure.core.util.Context;
 import com.azure.maps.traffic.implementation.TrafficsImpl;
-import com.azure.maps.traffic.models.ErrorResponseException;
-import com.azure.maps.traffic.models.IncidentDetailStyle;
-import com.azure.maps.traffic.models.IncidentGeometryType;
-import com.azure.maps.traffic.models.ProjectionStandard;
-import com.azure.maps.traffic.models.ResponseFormat;
-import com.azure.maps.traffic.models.SpeedUnit;
-import com.azure.maps.traffic.models.TileFormat;
-import com.azure.maps.traffic.models.TileIndex;
-import com.azure.maps.traffic.models.TrafficFlowSegmentData;
-import com.azure.maps.traffic.models.TrafficFlowSegmentStyle;
-import com.azure.maps.traffic.models.TrafficFlowTileStyle;
-import com.azure.maps.traffic.models.TrafficIncidentDetail;
-import com.azure.maps.traffic.models.TrafficIncidentTileStyle;
-import com.azure.maps.traffic.models.TrafficIncidentViewport;
-import java.nio.ByteBuffer;
-import java.util.List;
+import com.azure.maps.traffic.implementation.helpers.Utility;
+import com.azure.maps.traffic.implementation.models.TrafficFlowSegmentData;
+import com.azure.maps.traffic.implementation.models.TrafficIncidentDetail;
+import com.azure.maps.traffic.implementation.models.TrafficIncidentViewport;
+import com.azure.maps.traffic.models.TrafficFlowSegmentOptions;
+import com.azure.maps.traffic.models.TrafficFlowTileOptions;
+import com.azure.maps.traffic.models.TrafficIncidentDetailOptions;
+import com.azure.maps.traffic.models.TrafficIncidentTileOptions;
+import com.azure.maps.traffic.models.TrafficIncidentViewportOptions;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -67,9 +64,11 @@ public final class TrafficAsyncClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<StreamResponse> getTrafficFlowTileWithResponse(
-            TileFormat format, TrafficFlowTileStyle style, int zoom, TileIndex tileIndex, Integer thickness) {
-        return this.serviceClient.getTrafficFlowTileWithResponseAsync(format, style, zoom, tileIndex, thickness);
+    public Flux<ByteBuffer> getTrafficFlowTile(TrafficFlowTileOptions options) {
+                Mono<StreamResponse> responseMono = this.getTrafficFlowTileWithResponse(options, null);
+                    return responseMono.flatMapMany(response -> {
+                        return response.getValue();
+                    });  
     }
 
     /**
@@ -96,9 +95,18 @@ public final class TrafficAsyncClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Flux<ByteBuffer> getTrafficFlowTile(
-            TileFormat format, TrafficFlowTileStyle style, int zoom, TileIndex tileIndex, Integer thickness) {
-        return this.serviceClient.getTrafficFlowTileAsync(format, style, zoom, tileIndex, thickness);
+    public Mono<StreamResponse> getTrafficFlowTileWithResponse(TrafficFlowTileOptions options) {
+                return this.getTrafficFlowTileWithResponse(options, null);
+    }
+
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<StreamResponse> getTrafficFlowTileWithResponse(TrafficFlowTileOptions options, Context context) {        
+        return this.serviceClient.getTrafficFlowTileWithResponseAsync(
+            options.getFormat(), 
+            options.getTrafficFlowTileStyle(), 
+            options.getZoom(), 
+            options.getTileIndex(), 
+            options.getThickness());
     }
 
     /**
@@ -132,16 +140,11 @@ public final class TrafficAsyncClient {
      * @return this object is returned from a successful Traffic Flow Segment call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<TrafficFlowSegmentData>> getTrafficFlowSegmentWithResponse(
-            ResponseFormat format,
-            TrafficFlowSegmentStyle style,
-            int zoom,
-            List<Double> coordinates,
-            SpeedUnit unit,
-            Integer thickness,
-            Boolean openLr) {
-        return this.serviceClient.getTrafficFlowSegmentWithResponseAsync(
-                format, style, zoom, coordinates, unit, thickness, openLr);
+    public Mono<TrafficFlowSegmentData> getTrafficFlowSegment(TrafficFlowSegmentOptions options) {
+                Mono<Response<TrafficFlowSegmentData>> result = this.getTrafficFlowSegmentWithResponse(options, null);
+        return result.flatMap(response -> {
+            return Mono.just(response.getValue());
+        });
     }
 
     /**
@@ -175,15 +178,20 @@ public final class TrafficAsyncClient {
      * @return this object is returned from a successful Traffic Flow Segment call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<TrafficFlowSegmentData> getTrafficFlowSegment(
-            ResponseFormat format,
-            TrafficFlowSegmentStyle style,
-            int zoom,
-            List<Double> coordinates,
-            SpeedUnit unit,
-            Integer thickness,
-            Boolean openLr) {
-        return this.serviceClient.getTrafficFlowSegmentAsync(format, style, zoom, coordinates, unit, thickness, openLr);
+    public Mono<Response<TrafficFlowSegmentData>> getTrafficFlowSegmentWithResponse(TrafficFlowSegmentOptions options) {
+       return this.getTrafficFlowSegmentWithResponse(options, null);
+    }
+
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<Response<TrafficFlowSegmentData>> getTrafficFlowSegmentWithResponse(TrafficFlowSegmentOptions options, Context context) {
+            return this.serviceClient.getTrafficFlowSegmentWithResponseAsync(
+                   options.getFormat(), 
+                   options.getTrafficFlowSegmentStyle(), 
+                   options.getZoom(), 
+                   Utility.toCoordinates(options.getCoordinates()), 
+                   options.getUnit(), 
+                   options.getThickness(),
+                   options.getOpenLr());
     }
 
     /**
@@ -211,9 +219,11 @@ public final class TrafficAsyncClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<StreamResponse> getTrafficIncidentTileWithResponse(
-            TileFormat format, TrafficIncidentTileStyle style, int zoom, TileIndex tileIndex, String trafficState) {
-        return this.serviceClient.getTrafficIncidentTileWithResponseAsync(format, style, zoom, tileIndex, trafficState);
+    public Flux<ByteBuffer> getTrafficIncidentTile(TrafficIncidentTileOptions options) {
+                Mono<StreamResponse> responseMono = this.getTrafficIncidentTileWithResponse(options, null);
+                return responseMono.flatMapMany(response -> {
+                    return response.getValue();
+                }); 
     }
 
     /**
@@ -241,9 +251,73 @@ public final class TrafficAsyncClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Flux<ByteBuffer> getTrafficIncidentTile(
-            TileFormat format, TrafficIncidentTileStyle style, int zoom, TileIndex tileIndex, String trafficState) {
-        return this.serviceClient.getTrafficIncidentTileAsync(format, style, zoom, tileIndex, trafficState);
+    public Mono<StreamResponse> getTrafficIncidentTileWithResponse(TrafficIncidentTileOptions options) {
+        return this.getTrafficIncidentTileWithResponse(options, null);
+    }
+
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<StreamResponse> getTrafficIncidentTileWithResponse(TrafficIncidentTileOptions options, Context context) {        
+        return this.serviceClient.getTrafficIncidentTileWithResponseAsync(
+            options.getFormat(), 
+            options.getTrafficIncidentTileStyle(), 
+            options.getZoom(), 
+            options.getTileIndex(),
+            options.getTrafficState());
+    }
+
+    /**
+     * __Traffic Incident Detail__
+     *
+     * <p>**Applies to**: S0 and S1 pricing tiers.
+     *
+     * <p>This API provides information on traffic incidents inside a given bounding box, based on the current Traffic
+     * Model ID. The Traffic Model ID is available to grant synchronization of data between calls and API's. The Traffic
+     * Model ID is a key value for determining the currency of traffic incidents. It is updated every minute, and is
+     * valid for two minutes before it times out. It is used in rendering [incident
+     * tiles](https://docs.microsoft.com/rest/api/maps/traffic/gettrafficincidenttile). It can be obtained from
+     * the [Viewport API](https://docs.microsoft.com/en-us/rest/api/maps/traffic/gettrafficincidentviewport).
+     *
+     * @param format Desired format of the response. Value can be either _json_ or _xml_.
+     * @param style The style that will be used to render the tile in Traffic [Incident Tile
+     *     API](https://docs.microsoft.com/en-us/rest/api/maps/traffic/gettrafficincidenttile). This will have an effect
+     *     on the coordinates of traffic incidents in the reply.
+     * @param boundingbox The `boundingbox` is represented by two value pairs describing it's corners (first pair for
+     *     lower left corner and second for upper right). The pairs can either be specified using any of the
+     *     `projection`'s specified below (e.g., _minY,minX,maxY,maxX_) or by two latitude-longitude pairs (e.g.,
+     *     _minLat,minLon,maxLat,maxLon_).&lt;br&gt;&lt;br&gt;NOTE: If latitude/longitude pairs are used, then the
+     *     `projection` parameter must be set to "EPSG4326".
+     * @param boundingZoom Zoom level for desired tile. 0 to 22 for raster tiles, 0 through 22 for vector tiles.
+     * @param trafficmodelid Number referencing traffic model. This can be obtained from the [Viewport
+     *     API](https://docs.microsoft.com/en-us/rest/api/maps/traffic/gettrafficincidentviewport). It is updated every
+     *     minute, and is valid for two minutes before it times out. If the wrong Traffic Model ID is specified, the
+     *     correct one will be returned by the interface. A value of -1 will always invoke the most recent traffic
+     *     model.
+     * @param language [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for the output language.
+     *     Supported languages are ar, ca, cs, da, de, el, en, en-GB, en-US, es, et, fi, fr, he, hu, id, in*, it, lt,
+     *     lv, nb, nl, no, pl, pt, ro, ru, sk, sv, th, tr, zh.
+     *     <p>Please refer to [Supported
+     *     Languages](https://docs.microsoft.com/en-us/azure/azure-maps/supported-languages) for details. When invalid
+     *     language code is provided response is returned in English. When incident cause or description does not have
+     *     translation, English description is returned.
+     * @param projection The projection used to specify the coordinates in the request and response.
+     *     [EPSG900913](http://docs.openlayers.org/library/spherical_mercator.html) (default) or
+     *     [EPSG4326](http://spatialreference.org/ref/epsg/4326/).
+     * @param geometries The type of vector geometry added to incidents (returned in the &lt;v&gt; element of the
+     *     response).
+     * @param expandCluster Boolean to indicate whether to list all traffic incidents in a cluster separately.
+     * @param originalPosition Boolean on whether to return the original position of the incident (&lt;op&gt;) as well
+     *     as the one shifted to the beginning of the traffic tube (&lt;op&gt;).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorResponseException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return this object is returned from a successful Traffic incident Detail call.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<TrafficIncidentDetail> getTrafficIncidentDetail(TrafficIncidentDetailOptions options) {
+        Mono<Response<TrafficIncidentDetail>> result = this.getTrafficIncidentDetailWithResponse(options, null);
+        return result.flatMap(response -> {
+            return Mono.just(response.getValue());
+        });
     }
 
     /**
@@ -294,100 +368,23 @@ public final class TrafficAsyncClient {
      * @return this object is returned from a successful Traffic incident Detail call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<TrafficIncidentDetail>> getTrafficIncidentDetailWithResponse(
-            ResponseFormat format,
-            IncidentDetailStyle style,
-            List<Double> boundingbox,
-            int boundingZoom,
-            String trafficmodelid,
-            String language,
-            ProjectionStandard projection,
-            IncidentGeometryType geometries,
-            Boolean expandCluster,
-            Boolean originalPosition) {
+    public Mono<Response<TrafficIncidentDetail>> getTrafficIncidentDetailWithResponse(TrafficIncidentDetailOptions options) {
+        return this.getTrafficIncidentDetailWithResponse(options, null);
+    }
+    
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<Response<TrafficIncidentDetail>> getTrafficIncidentDetailWithResponse(TrafficIncidentDetailOptions options, Context context) {
         return this.serviceClient.getTrafficIncidentDetailWithResponseAsync(
-                format,
-                style,
-                boundingbox,
-                boundingZoom,
-                trafficmodelid,
-                language,
-                projection,
-                geometries,
-                expandCluster,
-                originalPosition);
-    }
-
-    /**
-     * __Traffic Incident Detail__
-     *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
-     *
-     * <p>This API provides information on traffic incidents inside a given bounding box, based on the current Traffic
-     * Model ID. The Traffic Model ID is available to grant synchronization of data between calls and API's. The Traffic
-     * Model ID is a key value for determining the currency of traffic incidents. It is updated every minute, and is
-     * valid for two minutes before it times out. It is used in rendering [incident
-     * tiles](https://docs.microsoft.com/en-us/rest/api/maps/traffic/gettrafficincidenttile). It can be obtained from
-     * the [Viewport API](https://docs.microsoft.com/en-us/rest/api/maps/traffic/gettrafficincidentviewport).
-     *
-     * @param format Desired format of the response. Value can be either _json_ or _xml_.
-     * @param style The style that will be used to render the tile in Traffic [Incident Tile
-     *     API](https://docs.microsoft.com/en-us/rest/api/maps/traffic/gettrafficincidenttile). This will have an effect
-     *     on the coordinates of traffic incidents in the reply.
-     * @param boundingbox The `boundingbox` is represented by two value pairs describing it's corners (first pair for
-     *     lower left corner and second for upper right). The pairs can either be specified using any of the
-     *     `projection`'s specified below (e.g., _minY,minX,maxY,maxX_) or by two latitude-longitude pairs (e.g.,
-     *     _minLat,minLon,maxLat,maxLon_).&lt;br&gt;&lt;br&gt;NOTE: If latitude/longitude pairs are used, then the
-     *     `projection` parameter must be set to "EPSG4326".
-     * @param boundingZoom Zoom level for desired tile. 0 to 22 for raster tiles, 0 through 22 for vector tiles.
-     * @param trafficmodelid Number referencing traffic model. This can be obtained from the [Viewport
-     *     API](https://docs.microsoft.com/en-us/rest/api/maps/traffic/gettrafficincidentviewport). It is updated every
-     *     minute, and is valid for two minutes before it times out. If the wrong Traffic Model ID is specified, the
-     *     correct one will be returned by the interface. A value of -1 will always invoke the most recent traffic
-     *     model.
-     * @param language [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for the output language.
-     *     Supported languages are ar, ca, cs, da, de, el, en, en-GB, en-US, es, et, fi, fr, he, hu, id, in*, it, lt,
-     *     lv, nb, nl, no, pl, pt, ro, ru, sk, sv, th, tr, zh.
-     *     <p>Please refer to [Supported
-     *     Languages](https://docs.microsoft.com/en-us/azure/azure-maps/supported-languages) for details. When invalid
-     *     language code is provided response is returned in English. When incident cause or description does not have
-     *     translation, English description is returned.
-     * @param projection The projection used to specify the coordinates in the request and response.
-     *     [EPSG900913](http://docs.openlayers.org/library/spherical_mercator.html) (default) or
-     *     [EPSG4326](http://spatialreference.org/ref/epsg/4326/).
-     * @param geometries The type of vector geometry added to incidents (returned in the &lt;v&gt; element of the
-     *     response).
-     * @param expandCluster Boolean to indicate whether to list all traffic incidents in a cluster separately.
-     * @param originalPosition Boolean on whether to return the original position of the incident (&lt;op&gt;) as well
-     *     as the one shifted to the beginning of the traffic tube (&lt;op&gt;).
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorResponseException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic incident Detail call.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<TrafficIncidentDetail> getTrafficIncidentDetail(
-            ResponseFormat format,
-            IncidentDetailStyle style,
-            List<Double> boundingbox,
-            int boundingZoom,
-            String trafficmodelid,
-            String language,
-            ProjectionStandard projection,
-            IncidentGeometryType geometries,
-            Boolean expandCluster,
-            Boolean originalPosition) {
-        return this.serviceClient.getTrafficIncidentDetailAsync(
-                format,
-                style,
-                boundingbox,
-                boundingZoom,
-                trafficmodelid,
-                language,
-                projection,
-                geometries,
-                expandCluster,
-                originalPosition);
+            options.getFormat(),
+            options.getIncidentDetailStyle(),
+            Utility.toBoundingBox(options.getBoundingBox()),
+            options.getBoundingZoom(),
+            options.getTrafficmodelid(),
+            options.getLanguage(),
+            options.getProjectionStandard(),
+            options.getIncidentGeometryType(),
+            options.getExpandCluster(),
+            options.getOriginalPosition());
     }
 
     /**
@@ -429,15 +426,11 @@ public final class TrafficAsyncClient {
      * @return this object is returned from a successful Traffic Incident Viewport call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<TrafficIncidentViewport>> getTrafficIncidentViewportWithResponse(
-            ResponseFormat format,
-            List<Double> boundingbox,
-            int boundingzoom,
-            List<Double> overviewbox,
-            int overviewzoom,
-            Boolean copyright) {
-        return this.serviceClient.getTrafficIncidentViewportWithResponseAsync(
-                format, boundingbox, boundingzoom, overviewbox, overviewzoom, copyright);
+    public Mono<TrafficIncidentViewport> getTrafficIncidentViewport(TrafficIncidentViewportOptions options) {
+        Mono<Response<TrafficIncidentViewport>> result = this.getTrafficIncidentViewportWithResponse(options, null);
+        return result.flatMap(response -> {
+            return Mono.just(response.getValue());
+        });
     }
 
     /**
@@ -479,14 +472,18 @@ public final class TrafficAsyncClient {
      * @return this object is returned from a successful Traffic Incident Viewport call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<TrafficIncidentViewport> getTrafficIncidentViewport(
-            ResponseFormat format,
-            List<Double> boundingbox,
-            int boundingzoom,
-            List<Double> overviewbox,
-            int overviewzoom,
-            Boolean copyright) {
-        return this.serviceClient.getTrafficIncidentViewportAsync(
-                format, boundingbox, boundingzoom, overviewbox, overviewzoom, copyright);
+    public Mono<Response<TrafficIncidentViewport>> getTrafficIncidentViewportWithResponse(TrafficIncidentViewportOptions options) {
+        return this.getTrafficIncidentViewportWithResponse(options, null);
+    }
+    
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<Response<TrafficIncidentViewport>> getTrafficIncidentViewportWithResponse(TrafficIncidentViewportOptions options, Context context) {
+            return this.serviceClient.getTrafficIncidentViewportWithResponseAsync(
+                options.getFormat(), 
+                Utility.toBoundingBox(options.getBoundingBox()),
+                options.getBoundingZoom(), 
+                Utility.toBoundingBox(options.getOverviewBox()), 
+                options.getOverviewZoom(), 
+                options.getCopyright());
     }
 }
