@@ -1,11 +1,17 @@
 package com.azure.maps.traffic;
 
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import com.azure.identity.DefaultAzureCredential;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
 public class TrafficClientBuilderTest {
     // Test for null RenderClientId, the client ID value
     @Test
     public void missingMapsClientId() {
         assertThrows(NullPointerException.class, () -> {
-            final RenderClientBuilder builder = new RenderClientBuilder();
+            final TrafficClientBuilder builder = new TrafficClientBuilder();
             builder.mapsClientId(null);
         });
     }
@@ -14,7 +20,7 @@ public class TrafficClientBuilderTest {
     @Test
     public void missingEndpoint() {
         assertThrows(NullPointerException.class, () -> {
-            final RenderClientBuilder builder = new RenderClientBuilder();
+            final TrafficClientBuilder builder = new TrafficClientBuilder();
             builder.endpoint(null);
         });
     }
@@ -23,7 +29,7 @@ public class TrafficClientBuilderTest {
     @Test
     public void missingPipeline() {
         assertThrows(NullPointerException.class, () -> {
-            final RenderClientBuilder builder = new RenderClientBuilder();
+            final TrafficClientBuilder builder = new TrafficClientBuilder();
             builder.pipeline(null);
         });
     }
@@ -32,7 +38,7 @@ public class TrafficClientBuilderTest {
     @Test
     public void missingHttpClient() {
         assertThrows(NullPointerException.class, () -> {
-            final RenderClientBuilder builder = new RenderClientBuilder();
+            final TrafficClientBuilder builder = new TrafficClientBuilder();
             builder.httpClient(null);
         });
     }
@@ -41,7 +47,7 @@ public class TrafficClientBuilderTest {
     @Test
     public void missingConfiguration() {
         assertThrows(NullPointerException.class, () -> {
-            final RenderClientBuilder builder = new RenderClientBuilder();
+            final TrafficClientBuilder builder = new TrafficClientBuilder();
             builder.configuration(null);
         });
     }
@@ -50,7 +56,7 @@ public class TrafficClientBuilderTest {
     @Test
     public void missingHttpLogOptions() {
         assertThrows(NullPointerException.class, () -> {
-            final RenderClientBuilder builder = new RenderClientBuilder();
+            final TrafficClientBuilder builder = new TrafficClientBuilder();
             builder.httpLogOptions(null);
         });
     }
@@ -59,7 +65,7 @@ public class TrafficClientBuilderTest {
     @Test
     public void missingRetryPolicy() {
         assertThrows(NullPointerException.class, () -> {
-            final RenderClientBuilder builder = new RenderClientBuilder();
+            final TrafficClientBuilder builder = new TrafficClientBuilder();
             builder.retryPolicy(null);
         });
     }
@@ -68,7 +74,7 @@ public class TrafficClientBuilderTest {
     @Test
     public void missingClientOptions() {
         assertThrows(NullPointerException.class, () -> {
-            final RenderClientBuilder builder = new RenderClientBuilder();
+            final TrafficClientBuilder builder = new TrafficClientBuilder();
             builder.clientOptions(null);
         });
     }
@@ -77,7 +83,7 @@ public class TrafficClientBuilderTest {
     @Test
     public void missingAddPolicy() {
         assertThrows(NullPointerException.class, () -> {
-            final RenderClientBuilder builder = new RenderClientBuilder();
+            final TrafficClientBuilder builder = new TrafficClientBuilder();
             builder.addPolicy(null);
         });
     }
@@ -86,7 +92,7 @@ public class TrafficClientBuilderTest {
     @Test
     public void missingMapsClientIdValidTokenCredential() {
         assertThrows(IllegalArgumentException.class, () -> {
-            final RenderClientBuilder builder = new RenderClientBuilder();
+            final TrafficClientBuilder builder = new TrafficClientBuilder();
             DefaultAzureCredential tokenCredential = new DefaultAzureCredentialBuilder().build();
             builder.credential(tokenCredential);
             builder.buildClient();
@@ -97,7 +103,7 @@ public class TrafficClientBuilderTest {
     @Test
     public void missingCredentials() {
         assertThrows(IllegalArgumentException.class, () -> {
-            final RenderClientBuilder builder = new RenderClientBuilder();
+            final TrafficClientBuilder builder = new TrafficClientBuilder();
             builder.mapsClientId("mapsClientId");
             builder.buildClient();
         });
