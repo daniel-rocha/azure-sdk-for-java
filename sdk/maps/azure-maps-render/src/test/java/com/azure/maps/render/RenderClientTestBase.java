@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -108,7 +111,9 @@ public class RenderClientTestBase extends TestBase {
     static void validateGetMapTileWithResponse(byte[] expected, int expectedStatusCode, SimpleResponse<InputStream> response) throws IOException {
         assertNotNull(response);
         assertEquals(expectedStatusCode, response.getStatusCode());
-        validateGetMapTile(expected, response.getValue().readAllBytes());
+        File file = new File("maptilesampleoutput.txt");
+        Files.copy(response.getValue(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        validateGetMapTile(expected, Files.readAllBytes(file.toPath()));
     }
 
     static void validateGetMapTileset(MapTileset expected, MapTileset actual) {
@@ -172,7 +177,9 @@ public class RenderClientTestBase extends TestBase {
     static void validateGetMapStaticImageWithResponse(byte[] expected, int expectedStatusCode, SimpleResponse<InputStream> response) throws IOException {
         assertNotNull(response);
         assertEquals(expectedStatusCode, response.getStatusCode());
-        validateGetMapTile(expected, response.getValue().readAllBytes());
+        File file = new File("mapstaticimagesampleoutput.txt");
+        Files.copy(response.getValue(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        validateGetMapTile(expected, Files.readAllBytes(file.toPath()));
     }
 
     static void validateGetCopyrightForTile(Copyright expected, Copyright actual) {
