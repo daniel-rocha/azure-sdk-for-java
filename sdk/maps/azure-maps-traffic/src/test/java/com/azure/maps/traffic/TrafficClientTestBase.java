@@ -1,5 +1,11 @@
 package com.azure.maps.traffic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +19,21 @@ import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogDetailLevel;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpPipelinePolicy;
+import com.azure.core.http.rest.Response;
+import com.azure.core.http.rest.SimpleResponse;
+import com.azure.core.http.rest.StreamResponse;
 import com.azure.core.test.InterceptorManager;
 import com.azure.core.test.TestBase;
 import com.azure.core.test.TestMode;
 import com.azure.core.util.Configuration;
 import com.azure.identity.EnvironmentCredentialBuilder;
+import com.azure.maps.traffic.implementation.models.TrafficFlowSegmentData;
+import com.azure.maps.traffic.implementation.models.TrafficIncidentDetail;
+import com.azure.maps.traffic.implementation.models.TrafficIncidentViewport;
+
+import org.junit.jupiter.api.DisplayNameGenerator.Simple;
+
+import reactor.core.publisher.Flux;
 
 public class TrafficClientTestBase extends TestBase {
     static final String FAKE_API_KEY = "1234567890";
@@ -84,5 +100,70 @@ public class TrafficClientTestBase extends TestBase {
         return interceptorManager.isPlaybackMode()
             ? "https://localhost:8080"
             : endpoint;
+    }
+
+    static void validateGetTrafficFlowTile(byte[] actual) {
+        assertNotNull(actual);
+    }
+
+    static void validateGetTrafficFlowTileWithResponse(int expectedStatusCode, SimpleResponse<InputStream> response) throws IOException {
+        assertNotNull(response);
+        assertEquals(expectedStatusCode, response.getStatusCode());
+    }
+
+    static void validateAsyncGetTrafficFlowTileWithResponse(int expectedStatusCode, StreamResponse response) throws IOException {
+        assertNotNull(response);
+        assertEquals(expectedStatusCode, response.getStatusCode());
+    }
+
+    static void validateGetTrafficFlowSegment(TrafficFlowSegmentData expected, TrafficFlowSegmentData actual) {
+        assertNotNull(actual);
+        assertNotNull(expected);
+        assertEquals(expected.getFlowSegmentData().getCurrentSpeed(), actual.getFlowSegmentData().getCurrentSpeed());
+        assertEquals(expected.getFlowSegmentData().getCurrentTravelTime(), actual.getFlowSegmentData().getCurrentTravelTime());
+        assertEquals(expected.getFlowSegmentData().getFreeFlowSpeed(), actual.getFlowSegmentData().getFreeFlowSpeed());
+        assertEquals(expected.getFlowSegmentData().getFreeFlowTravelTime(), actual.getFlowSegmentData().getFreeFlowTravelTime());
+        assertEquals(expected.getFlowSegmentData().getConfidence(), actual.getFlowSegmentData().getConfidence());
+    }
+
+    static void validateGetTrafficFlowSegmentWithResponse(TrafficFlowSegmentData expected, int expectedStatusCode, Response<TrafficFlowSegmentData> response) {
+        assertNotNull(response);
+        assertEquals(expectedStatusCode, response.getStatusCode());
+        validateGetTrafficFlowSegment(expected, response.getValue());
+    }
+
+    static void validateGetTrafficIncidentTile(ByteBuffer actual) {
+        assertNotNull(actual);
+    }
+
+    static void validateGetTrafficIncidentTileWithResponse(int expectedStatusCode, SimpleResponse<InputStream> response) throws IOException {
+        assertNotNull(response);
+        assertEquals(expectedStatusCode, response.getStatusCode());
+    }
+
+    static void validateTrafficIncidentDetail(TrafficIncidentDetail expected, TrafficIncidentDetail actual) {
+        assertNotNull(actual);
+        assertNotNull(expected);
+        assertEquals(expected.getTm().getPointsOfInterest().size(), actual.getTm().getPointsOfInterest().size());
+    }
+
+    static void validateTrafficIncidentDetailWithResponse(TrafficIncidentDetail expected, int expectedStatusCode, Response<TrafficIncidentDetail> response) {
+        assertNotNull(response);
+        assertEquals(expectedStatusCode, response.getStatusCode());
+        validateTrafficIncidentDetail(expected, response.getValue());
+    }
+
+    static void validateTrafficIncidentViewport(TrafficIncidentViewport expected, TrafficIncidentViewport actual) {
+        assertNotNull(actual);
+        assertNotNull(expected);
+        assertEquals(expected.getViewpResp().getVersion(), actual.getViewpResp().getVersion());
+        assertEquals(expected.getViewpResp().getCopyrightInformation(), actual.getViewpResp().getCopyrightInformation());
+        assertEquals(expected.getViewpResp().getMaps(), actual.getViewpResp().getMaps());
+    }
+
+    static void validateTrafficIncidentViewportWithResponse(TrafficIncidentViewport expected, int expectedStatusCode, Response<TrafficIncidentViewport> response) {
+        assertNotNull(response);
+        assertEquals(expectedStatusCode, response.getStatusCode());
+        validateTrafficIncidentViewport(expected, response.getValue());
     }
 }

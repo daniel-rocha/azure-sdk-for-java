@@ -17,6 +17,11 @@ public final class TrafficIncidentViewportOptions {
         return format;
     }
 
+    public TrafficIncidentViewportOptions setFormat(ResponseFormat format) {
+        this.format = format;
+        return this;
+    }
+
     public GeoBoundingBox getBoundingBox() {
         return boundingbox;
     }
@@ -57,7 +62,7 @@ public final class TrafficIncidentViewportOptions {
         return copyright;
     }
 
-    public TrafficIncidentViewportOptions getCopyright(Boolean copyright) {
+    public TrafficIncidentViewportOptions setCopyright(Boolean copyright) {
         this.copyright = copyright;
         return this;
     }

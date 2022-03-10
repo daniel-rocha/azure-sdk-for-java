@@ -15,6 +15,7 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.http.rest.StreamResponse;
+import com.azure.core.util.Context;
 import com.azure.maps.traffic.implementation.models.TrafficFlowSegmentData;
 import com.azure.maps.traffic.implementation.models.TrafficIncidentDetail;
 import com.azure.maps.traffic.implementation.models.TrafficIncidentViewport;
@@ -88,8 +89,8 @@ public final class TrafficClient {
      * @return
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public SimpleResponse<InputStream> getTrafficFlowTileWithResponse(TrafficFlowTileOptions options) {
-        Mono<StreamResponse> monoResp = this.asyncClient.getTrafficFlowTileWithResponse(options); 
+    public SimpleResponse<InputStream> getTrafficFlowTileWithResponse(TrafficFlowTileOptions options, Context context) {
+        Mono<StreamResponse> monoResp = this.asyncClient.getTrafficFlowTileWithResponse(options, null); 
         StreamResponse resp = monoResp.block();
         Iterator<ByteBufferBackedInputStream> iterator = resp.getValue().map(ByteBufferBackedInputStream::new).toStream().iterator();
         return new SimpleResponse<InputStream>(resp.getRequest(), resp.getStatusCode(), resp.getHeaders(), getInputStream(iterator));
@@ -150,7 +151,7 @@ public final class TrafficClient {
      * @return
      */    
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<TrafficFlowSegmentData> getTrafficFlowSegmentWithResponse(TrafficFlowSegmentOptions options) {
+    public Response<TrafficFlowSegmentData> getTrafficFlowSegmentWithResponse(TrafficFlowSegmentOptions options, Context context) {
         return this.asyncClient.getTrafficFlowSegmentWithResponse(options).block();
     }
 
@@ -199,7 +200,7 @@ public final class TrafficClient {
      * @return
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public SimpleResponse<InputStream> getTrafficIncidentTileWithResponse(TrafficIncidentTileOptions options) {
+    public SimpleResponse<InputStream> getTrafficIncidentTileWithResponse(TrafficIncidentTileOptions options, Context context) {
         Mono<StreamResponse> monoResp = this.asyncClient.getTrafficIncidentTileWithResponse(options); 
         StreamResponse resp = monoResp.block();
         Iterator<ByteBufferBackedInputStream> iterator = resp.getValue().map(ByteBufferBackedInputStream::new).toStream().iterator();
@@ -293,7 +294,7 @@ public final class TrafficClient {
      * @return
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<TrafficIncidentDetail> getTrafficIncidentDetailWithResponse(TrafficIncidentDetailOptions options) {
+    public Response<TrafficIncidentDetail> getTrafficIncidentDetailWithResponse(TrafficIncidentDetailOptions options, Context context) {
         return this.asyncClient.getTrafficIncidentDetailWithResponse(options).block();
     }
 
@@ -366,7 +367,7 @@ public final class TrafficClient {
      * @return
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<TrafficIncidentViewport> getTrafficIncidentViewportWithResponse(TrafficIncidentViewportOptions options) {
+    public Response<TrafficIncidentViewport> getTrafficIncidentViewportWithResponse(TrafficIncidentViewportOptions options, Context context) {
         return this.asyncClient.getTrafficIncidentViewportWithResponse(options).block();
     }
 

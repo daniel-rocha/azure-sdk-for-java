@@ -165,7 +165,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Flow Tile__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Azure Flow Tile API serves 256 x 256 pixel tiles showing traffic flow. All tiles use the same grid system.
      * Because the traffic tiles use transparent images, they can be layered on top of map tiles to create a compound
@@ -183,7 +183,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<StreamResponse> getTrafficFlowTileWithResponseAsync(
@@ -210,7 +210,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Flow Tile__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Azure Flow Tile API serves 256 x 256 pixel tiles showing traffic flow. All tiles use the same grid system.
      * Because the traffic tiles use transparent images, they can be layered on top of map tiles to create a compound
@@ -229,7 +229,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<StreamResponse> getTrafficFlowTileWithResponseAsync(
@@ -259,7 +259,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Flow Tile__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Azure Flow Tile API serves 256 x 256 pixel tiles showing traffic flow. All tiles use the same grid system.
      * Because the traffic tiles use transparent images, they can be layered on top of map tiles to create a compound
@@ -289,7 +289,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Flow Tile__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Azure Flow Tile API serves 256 x 256 pixel tiles showing traffic flow. All tiles use the same grid system.
      * Because the traffic tiles use transparent images, they can be layered on top of map tiles to create a compound
@@ -325,7 +325,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Flow Tile__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Azure Flow Tile API serves 256 x 256 pixel tiles showing traffic flow. All tiles use the same grid system.
      * Because the traffic tiles use transparent images, they can be layered on top of map tiles to create a compound
@@ -371,7 +371,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Flow Tile__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Azure Flow Tile API serves 256 x 256 pixel tiles showing traffic flow. All tiles use the same grid system.
      * Because the traffic tiles use transparent images, they can be layered on top of map tiles to create a compound
@@ -406,7 +406,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Flow Segment__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This service provides information about the speeds and travel times of the road fragment closest to the given
      * coordinates. It is designed to work alongside the Flow layer of the Render Service to support clickable flow data
@@ -431,8 +431,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic Flow Segment call along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return this object is returned from a successful Traffic Flow Segment call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<TrafficFlowSegmentData>> getTrafficFlowSegmentWithResponseAsync(
@@ -466,7 +465,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Flow Segment__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This service provides information about the speeds and travel times of the road fragment closest to the given
      * coordinates. It is designed to work alongside the Flow layer of the Render Service to support clickable flow data
@@ -492,8 +491,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic Flow Segment call along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return this object is returned from a successful Traffic Flow Segment call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<TrafficFlowSegmentData>> getTrafficFlowSegmentWithResponseAsync(
@@ -526,7 +524,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Flow Segment__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This service provides information about the speeds and travel times of the road fragment closest to the given
      * coordinates. It is designed to work alongside the Flow layer of the Render Service to support clickable flow data
@@ -551,8 +549,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic Flow Segment call on successful completion of {@link
-     *     Mono}.
+     * @return this object is returned from a successful Traffic Flow Segment call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<TrafficFlowSegmentData> getTrafficFlowSegmentAsync(
@@ -577,7 +574,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Flow Segment__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This service provides information about the speeds and travel times of the road fragment closest to the given
      * coordinates. It is designed to work alongside the Flow layer of the Render Service to support clickable flow data
@@ -603,8 +600,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic Flow Segment call on successful completion of {@link
-     *     Mono}.
+     * @return this object is returned from a successful Traffic Flow Segment call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<TrafficFlowSegmentData> getTrafficFlowSegmentAsync(
@@ -631,7 +627,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Flow Segment__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This service provides information about the speeds and travel times of the road fragment closest to the given
      * coordinates. It is designed to work alongside the Flow layer of the Render Service to support clickable flow data
@@ -673,7 +669,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Flow Segment__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This service provides information about the speeds and travel times of the road fragment closest to the given
      * coordinates. It is designed to work alongside the Flow layer of the Render Service to support clickable flow data
@@ -699,7 +695,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic Flow Segment call along with {@link Response}.
+     * @return this object is returned from a successful Traffic Flow Segment call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TrafficFlowSegmentData> getTrafficFlowSegmentWithResponse(
@@ -719,7 +715,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Tile__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This service serves 256 x 256 pixel tiles showing traffic incidents. All tiles use the same grid system.
      * Because the traffic tiles use transparent images, they can be layered on top of map tiles to create a compound
@@ -738,7 +734,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<StreamResponse> getTrafficIncidentTileWithResponseAsync(
@@ -765,7 +761,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Tile__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This service serves 256 x 256 pixel tiles showing traffic incidents. All tiles use the same grid system.
      * Because the traffic tiles use transparent images, they can be layered on top of map tiles to create a compound
@@ -785,7 +781,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<StreamResponse> getTrafficIncidentTileWithResponseAsync(
@@ -815,7 +811,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Tile__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This service serves 256 x 256 pixel tiles showing traffic incidents. All tiles use the same grid system.
      * Because the traffic tiles use transparent images, they can be layered on top of map tiles to create a compound
@@ -846,7 +842,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Tile__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This service serves 256 x 256 pixel tiles showing traffic incidents. All tiles use the same grid system.
      * Because the traffic tiles use transparent images, they can be layered on top of map tiles to create a compound
@@ -883,7 +879,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Tile__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This service serves 256 x 256 pixel tiles showing traffic incidents. All tiles use the same grid system.
      * Because the traffic tiles use transparent images, they can be layered on top of map tiles to create a compound
@@ -930,7 +926,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Tile__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This service serves 256 x 256 pixel tiles showing traffic incidents. All tiles use the same grid system.
      * Because the traffic tiles use transparent images, they can be layered on top of map tiles to create a compound
@@ -966,7 +962,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Detail__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This API provides information on traffic incidents inside a given bounding box, based on the current Traffic
      * Model ID. The Traffic Model ID is available to grant synchronization of data between calls and API's. The Traffic
@@ -1008,8 +1004,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic incident Detail call along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return this object is returned from a successful Traffic incident Detail call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<TrafficIncidentDetail>> getTrafficIncidentDetailWithResponseAsync(
@@ -1049,7 +1044,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Detail__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This API provides information on traffic incidents inside a given bounding box, based on the current Traffic
      * Model ID. The Traffic Model ID is available to grant synchronization of data between calls and API's. The Traffic
@@ -1092,8 +1087,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic incident Detail call along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return this object is returned from a successful Traffic incident Detail call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<TrafficIncidentDetail>> getTrafficIncidentDetailWithResponseAsync(
@@ -1132,7 +1126,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Detail__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This API provides information on traffic incidents inside a given bounding box, based on the current Traffic
      * Model ID. The Traffic Model ID is available to grant synchronization of data between calls and API's. The Traffic
@@ -1174,8 +1168,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic incident Detail call on successful completion of {@link
-     *     Mono}.
+     * @return this object is returned from a successful Traffic incident Detail call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<TrafficIncidentDetail> getTrafficIncidentDetailAsync(
@@ -1213,7 +1206,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Detail__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This API provides information on traffic incidents inside a given bounding box, based on the current Traffic
      * Model ID. The Traffic Model ID is available to grant synchronization of data between calls and API's. The Traffic
@@ -1256,8 +1249,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic incident Detail call on successful completion of {@link
-     *     Mono}.
+     * @return this object is returned from a successful Traffic incident Detail call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<TrafficIncidentDetail> getTrafficIncidentDetailAsync(
@@ -1297,7 +1289,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Detail__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This API provides information on traffic incidents inside a given bounding box, based on the current Traffic
      * Model ID. The Traffic Model ID is available to grant synchronization of data between calls and API's. The Traffic
@@ -1370,7 +1362,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Detail__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This API provides information on traffic incidents inside a given bounding box, based on the current Traffic
      * Model ID. The Traffic Model ID is available to grant synchronization of data between calls and API's. The Traffic
@@ -1413,7 +1405,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic incident Detail call along with {@link Response}.
+     * @return this object is returned from a successful Traffic incident Detail call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TrafficIncidentDetail> getTrafficIncidentDetailWithResponse(
@@ -1446,7 +1438,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Viewport__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This API returns legal and technical information for the viewport described in the request. It should be
      * called by client applications whenever the viewport changes (for instance, through zooming, panning, going to a
@@ -1479,8 +1471,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic Incident Viewport call along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return this object is returned from a successful Traffic Incident Viewport call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<TrafficIncidentViewport>> getTrafficIncidentViewportWithResponseAsync(
@@ -1514,7 +1505,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Viewport__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This API returns legal and technical information for the viewport described in the request. It should be
      * called by client applications whenever the viewport changes (for instance, through zooming, panning, going to a
@@ -1548,8 +1539,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic Incident Viewport call along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return this object is returned from a successful Traffic Incident Viewport call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<TrafficIncidentViewport>> getTrafficIncidentViewportWithResponseAsync(
@@ -1582,7 +1572,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Viewport__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This API returns legal and technical information for the viewport described in the request. It should be
      * called by client applications whenever the viewport changes (for instance, through zooming, panning, going to a
@@ -1615,8 +1605,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic Incident Viewport call on successful completion of
-     *     {@link Mono}.
+     * @return this object is returned from a successful Traffic Incident Viewport call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<TrafficIncidentViewport> getTrafficIncidentViewportAsync(
@@ -1641,7 +1630,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Viewport__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This API returns legal and technical information for the viewport described in the request. It should be
      * called by client applications whenever the viewport changes (for instance, through zooming, panning, going to a
@@ -1675,8 +1664,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic Incident Viewport call on successful completion of
-     *     {@link Mono}.
+     * @return this object is returned from a successful Traffic Incident Viewport call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<TrafficIncidentViewport> getTrafficIncidentViewportAsync(
@@ -1702,7 +1690,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Viewport__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This API returns legal and technical information for the viewport described in the request. It should be
      * called by client applications whenever the viewport changes (for instance, through zooming, panning, going to a
@@ -1752,7 +1740,7 @@ public final class TrafficsImpl {
     /**
      * __Traffic Incident Viewport__
      *
-     * <p>**Applies to**: S0 and S1 pricing tiers.
+     * <p>**Applies to**: see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>This API returns legal and technical information for the viewport described in the request. It should be
      * called by client applications whenever the viewport changes (for instance, through zooming, panning, going to a
@@ -1786,7 +1774,7 @@ public final class TrafficsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return this object is returned from a successful Traffic Incident Viewport call along with {@link Response}.
+     * @return this object is returned from a successful Traffic Incident Viewport call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TrafficIncidentViewport> getTrafficIncidentViewportWithResponse(
