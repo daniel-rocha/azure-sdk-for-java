@@ -18,6 +18,7 @@ autorest --java --use:@autorest/java@4.0.x
 ## Java
 
 ``` yaml
+
 title: TrafficClient
 input-file: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/maps/data-plane/Traffic/preview/1.0/traffic.json
 namespace: com.azure.maps.traffic
@@ -34,7 +35,7 @@ generate-sync-async-clients: false
 polling: {}
 models-subpackage: implementation.models
 custom-types-subpackage: models
-custom-types: TileFormat,TrafficFlowTileStyle,TileIndex,ErrorAdditionalInfo,ErrorDetail,ErrorResponse,ErrorResponseException,DelayMagnitude,IconCategory,IncidentDetailStyle,IncidentGeometryType,ProjectionStandard,ResponseFormat,SpeedUnit,TileFormat,TrafficFlowSegmentStyle,TrafficFlowTileStyle,TrafficIncidentTileStyle,TrafficIncidentPointOfInterest
+custom-types: TileFormat,TrafficFlowTileStyle,TileIndex,ErrorAdditionalInfo,ErrorDetail,ErrorResponse,ErrorResponseException,DelayMagnitude,IconCategory,IncidentDetailStyle,IncidentGeometryType,ProjectionStandard,ResponseFormat,SpeedUnit,TileFormat,TrafficFlowSegmentStyle,TrafficFlowTileStyle,TrafficIncidentTileStyle,TrafficIncidentPointOfInterest,TrafficFlowSegmentData,TrafficFlowSegmentDataFlowSegmentData,TrafficFlowSegmentDataFlowSegmentDataCoordinates
 customization-jar-path: target/azure-maps-traffic-customization-1.0.0-beta.1.jar
 customization-class: TrafficCustomization
 ```
