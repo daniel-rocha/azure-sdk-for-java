@@ -20,12 +20,9 @@ public class TrafficCustomization extends Customization {
 
         // customize TrafficFlowSegmentDataFlowSegmentData
         customizeTrafficFlowSegmentDataFlowSegmentData(models);
-    }
 
-    // Customizes the TrafficFlowSegmentDataFlowSegmentData class
-    private void customizeTrafficFlowSegmentDataFlowSegmentData(PackageCustomization models) {
-        ClassCustomization classCustomization = models.getClass("TrafficFlowSegmentDataFlowSegmentData");
-        classCustomization.rename("TrafficFlowSegmentDataProperties");
+        // customize TrafficIncidentViewportViewpResp
+        customizeTrafficIncidentViewportViewpResp(models);
     }
 
     // Customizes the TrafficFlowSegmentDataFlowSegmentDataCoordinates class
@@ -33,9 +30,6 @@ public class TrafficCustomization extends Customization {
         ClassCustomization classCustomization = models.getClass("TrafficFlowSegmentDataFlowSegmentDataCoordinates");
         MethodCustomization mc = classCustomization.getMethod("getCoordinates");
         mc.rename("toDelete");
-        // classCustomization.removeMethod("getCoordinates");
-        
-        // Replaces getCoordinates()
         final String getCoordinatesMethod = 
             "/**" +
             " * Returns a list of {@link GeoPosition} coordinates." +
@@ -48,20 +42,25 @@ public class TrafficCustomization extends Customization {
             "       .map(item -> new GeoPosition(item.getLatitude(), item.getLongitude()))" +
             "       .collect(Collectors.toList());" +
             "}";
-        
-        // classCustomization.removeMethod("getCoordinatesLegacy");
-        // classCustomization.removeMethod("getCoordinates");
-        // List<String> list = new ArrayList<>();
-        // list.add("java.util.stream.Collectors");
         classCustomization.addMethod(getCoordinatesMethod, Arrays.asList("java.util.List",
             "java.util.stream.Collectors", "java.util.Arrays","com.azure.core.models.GeoPosition"));
-
         // Without the renaming / deleting pair, an exception was being thrown by the ClassCustomization
         // class, which seemed to get lost in the class file.
         classCustomization.removeMethod("toDelete");
-
         // Rename the class
         ClassCustomization nameCustomization = models.getClass("TrafficFlowSegmentDataFlowSegmentDataCoordinates");
         nameCustomization.rename("TrafficFlowSegmentDataPropertiesCoordinates"); 
+    }
+
+    // Customizes the TrafficFlowSegmentDataFlowSegmentData class
+    private void customizeTrafficFlowSegmentDataFlowSegmentData(PackageCustomization models) {
+        ClassCustomization classCustomization = models.getClass("TrafficFlowSegmentDataFlowSegmentData");
+        classCustomization.rename("TrafficFlowSegmentDataProperties");
+    }
+
+    // Customizes the TrafficFlowSegmentDataFlowSegmentData class
+    private void customizeTrafficIncidentViewportViewpResp(PackageCustomization models) {
+        ClassCustomization classCustomization = models.getClass("TrafficIncidentViewportViewpResp");
+        classCustomization.rename("TrafficIncidentViewportResponse");
     }
 }

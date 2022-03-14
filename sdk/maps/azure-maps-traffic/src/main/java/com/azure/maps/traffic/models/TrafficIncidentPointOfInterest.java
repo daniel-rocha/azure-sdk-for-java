@@ -7,7 +7,6 @@
 package com.azure.maps.traffic.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.maps.traffic.implementation.models.Point;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 

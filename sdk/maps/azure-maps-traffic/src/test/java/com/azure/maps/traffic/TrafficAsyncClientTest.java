@@ -100,7 +100,7 @@ public class TrafficAsyncClientTest extends TrafficClientTestBase{
     @MethodSource("com.azure.maps.traffic.TestUtils#getTestParameters")
     public void testAsyncGetTrafficFlowSegment(HttpClient httpClient, TrafficServiceVersion serviceVersion) {
         TrafficAsyncClient client = getTrafficAsyncClient(httpClient, serviceVersion);
-        TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions().setTrafficFlowTileStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
+        TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions().setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
         .setFormat(ResponseFormat.JSON).setZoom(10).setCoordinates(new GeoPosition(45,45))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         StepVerifier.create(client.getTrafficFlowSegment(trafficFlowSegmentOptions))
@@ -119,7 +119,7 @@ public class TrafficAsyncClientTest extends TrafficClientTestBase{
     @MethodSource("com.azure.maps.traffic.TestUtils#getTestParameters")
     public void testAsyncGetTrafficFlowSegmentWithResponse(HttpClient httpClient, TrafficServiceVersion serviceVersion) {
         TrafficAsyncClient client = getTrafficAsyncClient(httpClient, serviceVersion);
-        TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions().setTrafficFlowTileStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
+        TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions().setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
         .setFormat(ResponseFormat.JSON).setZoom(10).setCoordinates(new GeoPosition(45,45))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         StepVerifier.create(client.getTrafficFlowSegmentWithResponse(trafficFlowSegmentOptions))
@@ -139,7 +139,7 @@ public class TrafficAsyncClientTest extends TrafficClientTestBase{
     @MethodSource("com.azure.maps.traffic.TestUtils#getTestParameters")
     public void testAsyncInvalidGetTrafficFlowSegmentWithResponse(HttpClient httpClient, TrafficServiceVersion serviceVersion) {
         TrafficAsyncClient client = getTrafficAsyncClient(httpClient, serviceVersion);
-        TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions().setTrafficFlowTileStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
+        TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions().setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
         .setFormat(ResponseFormat.JSON).setZoom(-1000).setCoordinates(new GeoPosition(45,45))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         StepVerifier.create(client.getTrafficFlowSegmentWithResponse(trafficFlowSegmentOptions))
@@ -148,19 +148,6 @@ public class TrafficAsyncClientTest extends TrafficClientTestBase{
                     assertEquals(400, httpResponseException.getResponse().getStatusCode());
                 });
     }
-
-    // Test async get traffic incident tile 
-    // @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    // @MethodSource("com.azure.maps.traffic.TestUtils#getTestParameters")
-    // public void testAsyncGetTrafficIncidentTile(HttpClient httpClient, TrafficServiceVersion serviceVersion) {
-    //     TrafficAsyncClient client = getTrafficAsyncClient(httpClient, serviceVersion);
-    //     TrafficIncidentTileOptions trafficIncidentTileOptions = new TrafficIncidentTileOptions().setFormat(TileFormat.PNG).setTrafficIncidentTileStyle(TrafficIncidentTileStyle.NIGHT)
-    //     .setTileIndex(new TileIndex().setX(175).setY(408)).setZoom(10);
-    //     StepVerifier.create(client.getTrafficIncidentTile(trafficIncidentTileOptions))
-    //     .assertNext(actualResults -> {
-    //         validateGetTrafficIncidentTile(actualResults);
-    //     }).verifyComplete();
-    // }
 
     // Test async get traffic incident detail empty poi
     @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)

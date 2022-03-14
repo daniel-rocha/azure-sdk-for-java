@@ -18,7 +18,7 @@ import com.azure.core.http.rest.StreamResponse;
 import com.azure.core.util.Context;
 import com.azure.maps.traffic.models.TrafficFlowSegmentData;
 import com.azure.maps.traffic.implementation.models.TrafficIncidentDetail;
-import com.azure.maps.traffic.implementation.models.TrafficIncidentViewport;
+import com.azure.maps.traffic.models.TrafficIncidentViewport;
 import com.azure.maps.traffic.models.TrafficFlowSegmentOptions;
 import com.azure.maps.traffic.models.TrafficFlowTileOptions;
 import com.azure.maps.traffic.models.TrafficIncidentDetailOptions;
@@ -216,8 +216,8 @@ public final class TrafficClient {
      * Model ID. The Traffic Model ID is available to grant synchronization of data between calls and API's. The Traffic
      * Model ID is a key value for determining the currency of traffic incidents. It is updated every minute, and is
      * valid for two minutes before it times out. It is used in rendering [incident
-     * tiles](https://docs.microsoft.com/en-us/rest/api/maps/traffic/gettrafficincidenttile). It can be obtained from
-     * the [Viewport API](https://docs.microsoft.com/en-us/rest/api/maps/traffic/gettrafficincidentviewport).
+     * tiles](https://docs.microsoft.com/rest/api/maps/traffic/gettrafficincidenttile). It can be obtained from
+     * the [Viewport API](https://docs.microsoft.com//rest/api/maps/traffic/gettrafficincidentviewport).
      *
      * @param format Desired format of the response. Value can be either _json_ or _xml_.
      * @param style The style that will be used to render the tile in Traffic [Incident Tile
@@ -235,7 +235,7 @@ public final class TrafficClient {
      *     correct one will be returned by the interface. A value of -1 will always invoke the most recent traffic
      *     model.
      * @param language [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for the output language.
-     *     Supported languages are ar, ca, cs, da, de, el, en, en-GB, en-US, es, et, fi, fr, he, hu, id, in*, it, lt,
+     *     Supported languages are ar, ca, cs, da, de, el, en, en-GB, es, et, fi, fr, he, hu, id, in*, it, lt,
      *     lv, nb, nl, no, pl, pt, ro, ru, sk, sv, th, tr, zh.
      *     <p>Please refer to [Supported
      *     Languages](https://docs.microsoft.com/azure/azure-maps/supported-languages) for details. When invalid
@@ -277,7 +277,7 @@ public final class TrafficClient {
      *     correct one will be returned by the interface. A value of -1 will always invoke the most recent traffic
      *     model.
      * @param language [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for the output language.
-     *     Supported languages are ar, ca, cs, da, de, el, en, en-GB, en-US, es, et, fi, fr, he, hu, id, in*, it, lt,
+     *     Supported languages are ar, ca, cs, da, de, el, en, en-GB, e n - u s, es, et, fi, fr, he, hu, id, in*, it, lt,
      *     lv, nb, nl, no, pl, pt, ro, ru, sk, sv, th, tr, zh.
      *     <p>Please refer to [Supported
      *     Languages](https://docs.microsoft.com/azure/azure-maps/supported-languages) for details. When invalid

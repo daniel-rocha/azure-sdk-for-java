@@ -18,7 +18,7 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.core.util.serializer.TypeReference;
 import com.azure.maps.traffic.models.TrafficFlowSegmentData;
 import com.azure.maps.traffic.implementation.models.TrafficIncidentDetail;
-import com.azure.maps.traffic.implementation.models.TrafficIncidentViewport;
+import com.azure.maps.traffic.models.TrafficIncidentViewport;
 
 import org.junit.jupiter.params.provider.Arguments;
 

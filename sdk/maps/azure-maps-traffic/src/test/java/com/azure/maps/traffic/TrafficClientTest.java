@@ -14,10 +14,7 @@ import com.azure.core.exception.HttpResponseException;
 import com.azure.core.http.HttpClient;
 import com.azure.core.models.GeoBoundingBox;
 import com.azure.core.models.GeoPosition;
-import com.azure.core.util.FluxUtil;
-import com.azure.maps.traffic.models.TrafficFlowSegmentData;
 import com.azure.maps.traffic.implementation.models.TrafficIncidentDetail;
-import com.azure.maps.traffic.implementation.models.TrafficIncidentViewport;
 import com.azure.maps.traffic.models.IncidentDetailStyle;
 import com.azure.maps.traffic.models.IncidentGeometryType;
 import com.azure.maps.traffic.models.ProjectionStandard;
@@ -25,6 +22,7 @@ import com.azure.maps.traffic.models.ResponseFormat;
 import com.azure.maps.traffic.models.SpeedUnit;
 import com.azure.maps.traffic.models.TileFormat;
 import com.azure.maps.traffic.models.TileIndex;
+import com.azure.maps.traffic.models.TrafficFlowSegmentData;
 import com.azure.maps.traffic.models.TrafficFlowSegmentOptions;
 import com.azure.maps.traffic.models.TrafficFlowSegmentStyle;
 import com.azure.maps.traffic.models.TrafficFlowTileOptions;
@@ -32,6 +30,7 @@ import com.azure.maps.traffic.models.TrafficFlowTileStyle;
 import com.azure.maps.traffic.models.TrafficIncidentDetailOptions;
 import com.azure.maps.traffic.models.TrafficIncidentTileOptions;
 import com.azure.maps.traffic.models.TrafficIncidentTileStyle;
+import com.azure.maps.traffic.models.TrafficIncidentViewport;
 import com.azure.maps.traffic.models.TrafficIncidentViewportOptions;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -89,7 +88,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
     public void testGetTrafficFlowSegment(HttpClient httpClient, TrafficServiceVersion serviceVersion) throws IOException {
         client = getTrafficClient(httpClient, serviceVersion);
         TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions();
-        trafficFlowSegmentOptions.setTrafficFlowTileStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
+        trafficFlowSegmentOptions.setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
         .setFormat(ResponseFormat.JSON).setZoom(10).setCoordinates(new GeoPosition(45,45))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         TrafficFlowSegmentData actualResult = client.getTrafficFlowSegment(trafficFlowSegmentOptions);
@@ -104,7 +103,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
     public void testGetTrafficFlowSegmentWithResponse(HttpClient httpClient, TrafficServiceVersion serviceVersion) throws IOException {
         client = getTrafficClient(httpClient, serviceVersion);
         TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions();
-        trafficFlowSegmentOptions.setTrafficFlowTileStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
+        trafficFlowSegmentOptions.setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
         .setFormat(ResponseFormat.JSON).setZoom(10).setCoordinates(new GeoPosition(45,45))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         validateGetTrafficFlowSegmentWithResponse(TestUtils.getExpectedTrafficFlowSegment(), 200, client.getTrafficFlowSegmentWithResponse(trafficFlowSegmentOptions, null));
@@ -115,7 +114,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
     @MethodSource("com.azure.maps.traffic.TestUtils#getTestParameters")
     public void testInvalidGetTrafficFlowSegmentWithResponse(HttpClient httpClient, TrafficServiceVersion serviceVersion) throws IOException {
         client = getTrafficClient(httpClient, serviceVersion);
-        TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions().setTrafficFlowTileStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
+        TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions().setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
         .setFormat(ResponseFormat.JSON).setZoom(-1000).setCoordinates(new GeoPosition(45,45))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         final HttpResponseException httpResponseException = assertThrows(HttpResponseException.class,

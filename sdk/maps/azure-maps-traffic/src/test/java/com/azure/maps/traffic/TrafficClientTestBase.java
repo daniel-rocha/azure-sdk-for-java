@@ -27,13 +27,9 @@ import com.azure.core.test.TestBase;
 import com.azure.core.test.TestMode;
 import com.azure.core.util.Configuration;
 import com.azure.identity.EnvironmentCredentialBuilder;
-import com.azure.maps.traffic.models.TrafficFlowSegmentData;
 import com.azure.maps.traffic.implementation.models.TrafficIncidentDetail;
-import com.azure.maps.traffic.implementation.models.TrafficIncidentViewport;
-
-import org.junit.jupiter.api.DisplayNameGenerator.Simple;
-
-import reactor.core.publisher.Flux;
+import com.azure.maps.traffic.models.TrafficFlowSegmentData;
+import com.azure.maps.traffic.models.TrafficIncidentViewport;
 
 public class TrafficClientTestBase extends TestBase {
     static final String FAKE_API_KEY = "1234567890";
