@@ -6,7 +6,7 @@ public final class TrafficIncidentDetailOptions {
     private ResponseFormat format;
     private IncidentDetailStyle style;
     private GeoBoundingBox boundingbox;
-    private int boundingZoom;
+    private Integer boundingZoom;
     private String trafficmodelid;
     private String language;
     private ProjectionStandard projection;

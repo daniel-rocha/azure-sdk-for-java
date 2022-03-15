@@ -3,7 +3,7 @@ package com.azure.maps.traffic.models;
 public final class TrafficIncidentTileOptions {
     private TileFormat format;
     private TrafficIncidentTileStyle style;
-    private int zoom;
+    private Integer zoom;
     private TileIndex tileIndex;
     private String trafficState;
 

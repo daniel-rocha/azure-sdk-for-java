@@ -5,9 +5,9 @@ import com.azure.core.models.GeoBoundingBox;
 public final class TrafficIncidentViewportOptions {
     private ResponseFormat format;
     private GeoBoundingBox boundingbox;
-    private int boundingzoom;
+    private Integer boundingzoom;
     private GeoBoundingBox overviewbox;
-    private int overviewzoom;
+    private Integer overviewzoom;
     private Boolean copyright;
     
     /**

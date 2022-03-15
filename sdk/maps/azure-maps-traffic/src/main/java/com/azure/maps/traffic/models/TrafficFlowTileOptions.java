@@ -3,7 +3,7 @@ package com.azure.maps.traffic.models;
 public final class TrafficFlowTileOptions {
     private TileFormat format;
     private TrafficFlowTileStyle style;
-    private int zoom;
+    private Integer zoom;
     private TileIndex tileIndex;
     private Integer thickness;
 

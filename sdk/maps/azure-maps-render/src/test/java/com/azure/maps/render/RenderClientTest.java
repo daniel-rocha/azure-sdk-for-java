@@ -3,11 +3,8 @@ package com.azure.maps.render;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,8 +44,8 @@ public class RenderClientTest extends RenderClientTestBase {
         mapTileOptions.setTilesetId(TilesetID.MICROSOFT_BASE_ROAD);
         mapTileOptions.setTileIndex(new TileIndex().setX(10).setY(22).setZ(6));
         InputStream actualResult = client.getMapTile(mapTileOptions);
-        InputStream expectedResult = TestUtils.getExpectedMapTile();
-        validateGetMapTile(expectedResult, actualResult);
+        validateGetMapTile(actualResult);
+        actualResult.close();
     }
 
     // Test get map tile with response
@@ -60,7 +57,7 @@ public class RenderClientTest extends RenderClientTestBase {
         MapTileOptions mapTileOptions = new MapTileOptions();
         mapTileOptions.setTilesetId(TilesetID.MICROSOFT_BASE_ROAD);
         mapTileOptions.setTileIndex(new TileIndex().setX(10).setY(22).setZ(6));
-        validateGetMapTileWithResponse(TestUtils.getExpectedMapTile(), 200, client.getMapTileWithResponse(mapTileOptions, null));
+        validateGetMapTileWithResponse(200, client.getMapTileWithResponse(mapTileOptions, null));
     }
 
     // Case 2: Respone 400, incorrect input
@@ -172,8 +169,8 @@ public class RenderClientTest extends RenderClientTestBase {
         .setMapImageStyle(MapImageStyle.MAIN).setZoom(2)
         .setBoundingBox(Utility.toBoundingBox(bbox)).setRasterTileFormat(RasterTileFormat.PNG);
         InputStream actualResult = client.getMapStaticImage(mapStaticImageOptions);
-        InputStream expectedResult = TestUtils.getExpectedMapStaticImage();
-        validateGetMapStaticImage(expectedResult, actualResult);
+        validateGetMapStaticImage(actualResult);
+        actualResult.close();
     }
 
     // Test get mapstatic image with response
@@ -188,7 +185,7 @@ public class RenderClientTest extends RenderClientTestBase {
         MapStaticImageOptions mapStaticImageOptions = new MapStaticImageOptions().setStaticMapLayer(StaticMapLayer.BASIC)
         .setMapImageStyle(MapImageStyle.MAIN).setZoom(2)
         .setBoundingBox(Utility.toBoundingBox(bbox)).setRasterTileFormat(RasterTileFormat.PNG);
-        validateGetMapStaticImageWithResponse(TestUtils.getExpectedMapStaticImage(), 200, client.getMapStaticImageWithResponse(mapStaticImageOptions, null));
+        validateGetMapStaticImageWithResponse(200, client.getMapStaticImageWithResponse(mapStaticImageOptions, null));
     }
 
     // Test get copyright from bounding box

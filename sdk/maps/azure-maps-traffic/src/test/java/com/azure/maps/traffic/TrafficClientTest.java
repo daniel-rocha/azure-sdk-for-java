@@ -3,12 +3,9 @@ package com.azure.maps.traffic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 
 import com.azure.core.exception.HttpResponseException;
 import com.azure.core.http.HttpClient;
@@ -55,6 +52,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
         InputStream is = client.getTrafficFlowTile(trafficFlowTileOptions);
         byte[] actualResult = TestUtils.toByteArray(is);
         validateGetTrafficFlowTile(actualResult);
+        is.close();
     }
 
     // Test get traffic flow tile with response
@@ -131,6 +129,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
         InputStream is = client.getTrafficIncidentTile(trafficIncidentTileOptions);
         byte[] actualResult = TestUtils.toByteArray(is);
         validateGetTrafficIncidentTile(ByteBuffer.wrap(actualResult));
+        is.close();
     }
 
     // Test get traffic incident tile with response

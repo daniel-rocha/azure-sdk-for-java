@@ -1,11 +1,8 @@
 package com.azure.maps.traffic;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,8 +14,8 @@ import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.core.util.serializer.TypeReference;
-import com.azure.maps.traffic.models.TrafficFlowSegmentData;
 import com.azure.maps.traffic.implementation.models.TrafficIncidentDetail;
+import com.azure.maps.traffic.models.TrafficFlowSegmentData;
 import com.azure.maps.traffic.models.TrafficIncidentViewport;
 
 import org.junit.jupiter.params.provider.Arguments;
@@ -32,6 +29,7 @@ public class TestUtils {
         byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<TrafficFlowSegmentData> interimType = new TypeReference<TrafficFlowSegmentData>(){};
+        is.close();
         return jacksonAdapter.<TrafficFlowSegmentData>deserialize(data, interimType.getJavaType(),
         SerializerEncoding.JSON);
     }
@@ -41,6 +39,7 @@ public class TestUtils {
         byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<TrafficIncidentDetail> interimType = new TypeReference<TrafficIncidentDetail>(){};
+        is.close();
         return jacksonAdapter.<TrafficIncidentDetail>deserialize(data, interimType.getJavaType(),
         SerializerEncoding.JSON);
     }
@@ -50,6 +49,7 @@ public class TestUtils {
         byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<TrafficIncidentViewport> interimType = new TypeReference<TrafficIncidentViewport>(){};
+        is.close();
         return jacksonAdapter.<TrafficIncidentViewport>deserialize(data, interimType.getJavaType(),
         SerializerEncoding.JSON);
     }

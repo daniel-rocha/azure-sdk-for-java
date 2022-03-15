@@ -5,7 +5,7 @@ import com.azure.core.models.GeoPosition;
 public final class TrafficFlowSegmentOptions {
     private ResponseFormat format;
     private TrafficFlowSegmentStyle style;
-    private int zoom;
+    private Integer zoom;
     private GeoPosition coordinates;
     private SpeedUnit unit;
     private Integer thickness;

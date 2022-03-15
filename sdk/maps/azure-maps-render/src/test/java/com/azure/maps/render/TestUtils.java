@@ -1,11 +1,8 @@
 package com.azure.maps.render;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +35,7 @@ public class TestUtils {
         MapTilesetPrivate mapTilesetPrivate = null;
         mapTilesetPrivate = jacksonAdapter.<MapTilesetPrivate>deserialize(data, interimType.getJavaType(),
         SerializerEncoding.JSON);
+        is.close();
         return Utility.toMapTileset(mapTilesetPrivate);
     }
 
@@ -46,6 +44,7 @@ public class TestUtils {
         byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<MapAttribution> interimType = new TypeReference<MapAttribution>(){};
+        is.close();
         return jacksonAdapter.<MapAttribution>deserialize(data, interimType.getJavaType(),
         SerializerEncoding.JSON);
     }
@@ -55,6 +54,7 @@ public class TestUtils {
         byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<CopyrightCaption> interimType = new TypeReference<CopyrightCaption>(){};
+        is.close();
         return jacksonAdapter.<CopyrightCaption>deserialize(data, interimType.getJavaType(),
         SerializerEncoding.JSON);
     }
@@ -64,6 +64,7 @@ public class TestUtils {
         byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<Copyright> interimType = new TypeReference<Copyright>(){};
+        is.close();
         return jacksonAdapter.<Copyright>deserialize(data, interimType.getJavaType(),
         SerializerEncoding.JSON);
     }
@@ -73,6 +74,7 @@ public class TestUtils {
         byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<Copyright> interimType = new TypeReference<Copyright>(){};
+        is.close();
         return jacksonAdapter.<Copyright>deserialize(data, interimType.getJavaType(),
         SerializerEncoding.JSON);
     }
@@ -82,18 +84,9 @@ public class TestUtils {
         byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<Copyright> interimType = new TypeReference<Copyright>(){};
+        is.close();
         return jacksonAdapter.<Copyright>deserialize(data, interimType.getJavaType(),
         SerializerEncoding.JSON);
-    }
-
-    static InputStream getExpectedMapTile() throws IOException {
-        InputStream is = ClassLoader.getSystemResourceAsStream("maptile.png");
-        return is;
-    }
-
-    static InputStream getExpectedMapStaticImage() throws IOException {
-        InputStream is = ClassLoader.getSystemResourceAsStream("mapstaticimage.png");
-        return is;
     }
 
     /**
@@ -114,16 +107,21 @@ public class TestUtils {
         return argumentsList.stream();
     }
 
-    public static byte[] toByteArray(InputStream in) throws IOException
-    {
+    /**
+     * Code referenced from 
+     * https://www.techiedelight.com/convert-inputstream-byte-array-java/#:~:text=Convert%20InputStream%20to%20byte%20array%20in%20Java%201,Commons%20IO%20...%204%204.%20Using%20sun.misc.IOUtils%20
+     * @param InputStream in
+     * @return byte[]
+     * @throws IOException
+     */
+    public static byte[] toByteArray(InputStream in) throws IOException {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
  
         byte[] buffer = new byte[1024];
         int len;
  
         // read bytes from the input stream and store them in the buffer
-        while ((len = in.read(buffer)) != -1)
-        {
+        while ((len = in.read(buffer)) != -1) {
             // write bytes from the buffer into the output stream
             os.write(buffer, 0, len);
         }
