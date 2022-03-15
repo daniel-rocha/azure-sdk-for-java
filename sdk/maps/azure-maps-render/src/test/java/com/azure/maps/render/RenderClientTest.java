@@ -46,12 +46,9 @@ public class RenderClientTest extends RenderClientTestBase {
         MapTileOptions mapTileOptions = new MapTileOptions();
         mapTileOptions.setTilesetId(TilesetID.MICROSOFT_BASE_ROAD);
         mapTileOptions.setTileIndex(new TileIndex().setX(10).setY(22).setZ(6));
-        InputStream is = client.getMapTile(mapTileOptions);
-        File file = new File("maptilesampleoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] actualResult = Files.readAllBytes(file.toPath());
-        byte[] expectedResult = TestUtils.getExpectedMapTile();
-        validateGetMapTile(actualResult, expectedResult);
+        InputStream actualResult = client.getMapTile(mapTileOptions);
+        InputStream expectedResult = TestUtils.getExpectedMapTile();
+        validateGetMapTile(expectedResult, actualResult);
     }
 
     // Test get map tile with response
@@ -174,11 +171,8 @@ public class RenderClientTest extends RenderClientTestBase {
         MapStaticImageOptions mapStaticImageOptions = new MapStaticImageOptions().setStaticMapLayer(StaticMapLayer.BASIC)
         .setMapImageStyle(MapImageStyle.MAIN).setZoom(2)
         .setBoundingBox(Utility.toBoundingBox(bbox)).setRasterTileFormat(RasterTileFormat.PNG);
-        InputStream is = client.getMapStaticImage(mapStaticImageOptions);
-        File file = new File("mapstaticimagesampleoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] actualResult = Files.readAllBytes(file.toPath());
-        byte[] expectedResult = TestUtils.getExpectedMapStaticImage();
+        InputStream actualResult = client.getMapStaticImage(mapStaticImageOptions);
+        InputStream expectedResult = TestUtils.getExpectedMapStaticImage();
         validateGetMapStaticImage(expectedResult, actualResult);
     }
 

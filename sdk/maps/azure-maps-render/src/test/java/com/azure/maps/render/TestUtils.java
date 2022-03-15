@@ -1,10 +1,10 @@
 package com.azure.maps.render;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -32,10 +32,7 @@ public class TestUtils {
 
     static MapTileset getExpectedMapTileset() throws IOException {
         InputStream is = ClassLoader.getSystemResourceAsStream("maptileset.json");
-        File file = new File("maptilesetoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] data = null;
-        data = Files.readAllBytes(file.toPath());
+        byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<MapTilesetPrivate> interimType = new TypeReference<MapTilesetPrivate>(){};
         MapTilesetPrivate mapTilesetPrivate = null;
@@ -46,10 +43,7 @@ public class TestUtils {
 
     static MapAttribution getExpectedMapAttribution() throws IOException {
         InputStream is = ClassLoader.getSystemResourceAsStream("mapattribution.json");
-        File file = new File("mapattributionoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] data = null;
-        data = Files.readAllBytes(file.toPath());
+        byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<MapAttribution> interimType = new TypeReference<MapAttribution>(){};
         return jacksonAdapter.<MapAttribution>deserialize(data, interimType.getJavaType(),
@@ -58,10 +52,7 @@ public class TestUtils {
 
     static CopyrightCaption getExpectedCopyrightCaption() throws IOException {
         InputStream is = ClassLoader.getSystemResourceAsStream("copyrightcaption.json");
-        File file = new File("copyrightcaptionoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] data = null;
-        data = Files.readAllBytes(file.toPath());
+        byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<CopyrightCaption> interimType = new TypeReference<CopyrightCaption>(){};
         return jacksonAdapter.<CopyrightCaption>deserialize(data, interimType.getJavaType(),
@@ -70,10 +61,7 @@ public class TestUtils {
 
     static Copyright getExpectedCopyrightFromBoundingBox() throws IOException {
         InputStream is = ClassLoader.getSystemResourceAsStream("getcopyrightfromboundingbox.json");
-        File file = new File("getcopyrightfromboundingboxoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] data = null;
-        data = Files.readAllBytes(file.toPath());
+        byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<Copyright> interimType = new TypeReference<Copyright>(){};
         return jacksonAdapter.<Copyright>deserialize(data, interimType.getJavaType(),
@@ -82,10 +70,7 @@ public class TestUtils {
 
     static Copyright getExpectedCopyrightForTile() throws IOException {
         InputStream is = ClassLoader.getSystemResourceAsStream("getcopyrightfortile.json");
-        File file = new File("getcopyrightfortileoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] data = null;
-        data = Files.readAllBytes(file.toPath());
+        byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<Copyright> interimType = new TypeReference<Copyright>(){};
         return jacksonAdapter.<Copyright>deserialize(data, interimType.getJavaType(),
@@ -94,28 +79,21 @@ public class TestUtils {
 
     static Copyright getExpectedCopyrightForWorld() throws IOException {
         InputStream is = ClassLoader.getSystemResourceAsStream("getcopyrightforworld.json");
-        File file = new File("getcopyrightforworldoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] data = null;
-        data = Files.readAllBytes(file.toPath());
+        byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<Copyright> interimType = new TypeReference<Copyright>(){};
         return jacksonAdapter.<Copyright>deserialize(data, interimType.getJavaType(),
         SerializerEncoding.JSON);
     }
 
-    static byte[] getExpectedMapTile() throws IOException {
+    static InputStream getExpectedMapTile() throws IOException {
         InputStream is = ClassLoader.getSystemResourceAsStream("maptile.png");
-        File file = new File("maptileoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        return Files.readAllBytes(file.toPath());
+        return is;
     }
 
-    static byte[] getExpectedMapStaticImage() throws IOException {
+    static InputStream getExpectedMapStaticImage() throws IOException {
         InputStream is = ClassLoader.getSystemResourceAsStream("mapstaticimage.png");
-        File file = new File("mapstaticimageoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        return Files.readAllBytes(file.toPath());
+        return is;
     }
 
     /**
@@ -134,5 +112,21 @@ public class TestUtils {
                     .forEach(serviceVersion -> argumentsList.add(Arguments.of(httpClient, serviceVersion)));
             });
         return argumentsList.stream();
+    }
+
+    public static byte[] toByteArray(InputStream in) throws IOException
+    {
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+ 
+        byte[] buffer = new byte[1024];
+        int len;
+ 
+        // read bytes from the input stream and store them in the buffer
+        while ((len = in.read(buffer)) != -1)
+        {
+            // write bytes from the buffer into the output stream
+            os.write(buffer, 0, len);
+        }
+        return os.toByteArray();
     }
 }
