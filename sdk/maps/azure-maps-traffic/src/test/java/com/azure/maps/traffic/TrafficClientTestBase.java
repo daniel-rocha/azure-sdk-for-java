@@ -152,9 +152,9 @@ public class TrafficClientTestBase extends TestBase {
     static void validateTrafficIncidentViewport(TrafficIncidentViewport expected, TrafficIncidentViewport actual) {
         assertNotNull(actual);
         assertNotNull(expected);
-        assertEquals(expected.getViewpResp().getVersion(), actual.getViewpResp().getVersion());
-        assertEquals(expected.getViewpResp().getCopyrightInformation(), actual.getViewpResp().getCopyrightInformation());
-        assertEquals(expected.getViewpResp().getMaps(), actual.getViewpResp().getMaps());
+        assertEquals(expected.getViewportResponse().getVersion(), actual.getViewportResponse().getVersion());
+        assertEquals(expected.getViewportResponse().getCopyrightInformation(), actual.getViewportResponse().getCopyrightInformation());
+        assertEquals(expected.getViewportResponse().getMaps(), actual.getViewportResponse().getMaps());
     }
 
     static void validateTrafficIncidentViewportWithResponse(TrafficIncidentViewport expected, int expectedStatusCode, Response<TrafficIncidentViewport> response) {

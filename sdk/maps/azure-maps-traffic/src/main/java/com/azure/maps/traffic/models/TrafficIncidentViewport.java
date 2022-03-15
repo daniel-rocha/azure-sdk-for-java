@@ -23,7 +23,7 @@ public final class TrafficIncidentViewport {
      *
      * @return the viewpResp value.
      */
-    public TrafficIncidentViewportResponse getViewpResp() {
+    public TrafficIncidentViewportResponse getViewportResponse() {
         return this.viewpResp;
     }
 }

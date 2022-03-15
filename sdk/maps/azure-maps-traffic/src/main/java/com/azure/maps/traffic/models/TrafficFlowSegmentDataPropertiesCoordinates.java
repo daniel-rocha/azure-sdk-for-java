@@ -28,7 +28,7 @@ public final class TrafficFlowSegmentDataPropertiesCoordinates {
     /** * Returns a list of {@link GeoPosition} coordinates.** return the coordinates */
     public List<GeoPosition> getCoordinates() {
         return this.coordinates.stream()
-                .map(item -> new GeoPosition(item.getLatitude(), item.getLongitude()))
+                .map(item -> new GeoPosition(item.getLongitude(), item.getLatitude()))
                 .collect(Collectors.toList());
     }
 }

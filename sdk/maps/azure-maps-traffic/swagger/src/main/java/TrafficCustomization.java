@@ -18,6 +18,9 @@ public class TrafficCustomization extends Customization {
         // customize TrafficFlowSegmentDataFlowSegmentDataCoordinates
         customizeTrafficFlowSegmentDataFlowSegmentDataCoordinates(models);
 
+        // customize TrafficIncidentViewport
+        customizeTrafficIncidentViewport(models);
+
         // customize TrafficFlowSegmentDataFlowSegmentData
         customizeTrafficFlowSegmentDataFlowSegmentData(models);
 
@@ -39,7 +42,7 @@ public class TrafficCustomization extends Customization {
             "public List<GeoPosition> getCoordinates() {" +
             "       return this.coordinates" +
             "       .stream()" +
-            "       .map(item -> new GeoPosition(item.getLatitude(), item.getLongitude()))" +
+            "       .map(item -> new GeoPosition(item.getLongitude(), item.getLatitude()))" +
             "       .collect(Collectors.toList());" +
             "}";
         classCustomization.addMethod(getCoordinatesMethod, Arrays.asList("java.util.List",
@@ -50,6 +53,13 @@ public class TrafficCustomization extends Customization {
         // Rename the class
         ClassCustomization nameCustomization = models.getClass("TrafficFlowSegmentDataFlowSegmentDataCoordinates");
         nameCustomization.rename("TrafficFlowSegmentDataPropertiesCoordinates"); 
+    }
+
+    // Customizes the TrafficIncidentViewport class
+    private void customizeTrafficIncidentViewport(PackageCustomization models) {
+        ClassCustomization classCustomization = models.getClass("TrafficIncidentViewport");
+        MethodCustomization mc = classCustomization.getMethod("getViewpResp");
+        mc.rename("getViewportResponse");
     }
 
     // Customizes the TrafficFlowSegmentDataFlowSegmentData class
