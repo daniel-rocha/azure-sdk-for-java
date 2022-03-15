@@ -1,5 +1,6 @@
 package com.azure.maps.traffic;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,19 +27,9 @@ public class TestUtils {
     static final String FAKE_API_KEY = "1234567890";
     public static final Duration DEFAULT_POLL_INTERVAL = Duration.ofSeconds(30);
 
-    // static byte[] getExpectedTrafficFlowTile() throws IOException {
-    //     InputStream is = ClassLoader.getSystemResourceAsStream("trafficflowtile.png");
-    //     File file = new File("trafficflowtileexpectedoutput.png");
-    //     Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-    //     return Files.readAllBytes(file.toPath());
-    // }
-
     static TrafficFlowSegmentData getExpectedTrafficFlowSegment() throws IOException {
         InputStream is = ClassLoader.getSystemResourceAsStream("trafficflowsegment.json");
-        File file = new File("trafficflowsegmentexpectedoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] data = null;
-        data = Files.readAllBytes(file.toPath());
+        byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<TrafficFlowSegmentData> interimType = new TypeReference<TrafficFlowSegmentData>(){};
         return jacksonAdapter.<TrafficFlowSegmentData>deserialize(data, interimType.getJavaType(),
@@ -47,10 +38,7 @@ public class TestUtils {
 
     static TrafficIncidentDetail getExpectedTrafficIncidentDetail() throws IOException {
         InputStream is = ClassLoader.getSystemResourceAsStream("trafficincidentdetail.json");
-        File file = new File("trafficincidentdetailexpectedoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] data = null;
-        data = Files.readAllBytes(file.toPath());
+        byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<TrafficIncidentDetail> interimType = new TypeReference<TrafficIncidentDetail>(){};
         return jacksonAdapter.<TrafficIncidentDetail>deserialize(data, interimType.getJavaType(),
@@ -59,10 +47,7 @@ public class TestUtils {
 
     static TrafficIncidentViewport getExpectedTrafficIncidentViewport() throws IOException {
         InputStream is = ClassLoader.getSystemResourceAsStream("trafficincidentviewport.json");
-        File file = new File("trafficincidentviewportexpectedoutput.txt");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] data = null;
-        data = Files.readAllBytes(file.toPath());
+        byte[] data = toByteArray(is);
         SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         TypeReference<TrafficIncidentViewport> interimType = new TypeReference<TrafficIncidentViewport>(){};
         return jacksonAdapter.<TrafficIncidentViewport>deserialize(data, interimType.getJavaType(),
@@ -85,5 +70,21 @@ public class TestUtils {
                     .forEach(serviceVersion -> argumentsList.add(Arguments.of(httpClient, serviceVersion)));
             });
         return argumentsList.stream();
+    }
+
+    public static byte[] toByteArray(InputStream in) throws IOException
+    {
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+ 
+        byte[] buffer = new byte[1024];
+        int len;
+ 
+        // read bytes from the input stream and store them in the buffer
+        while ((len = in.read(buffer)) != -1)
+        {
+            // write bytes from the buffer into the output stream
+            os.write(buffer, 0, len);
+        }
+        return os.toByteArray();
     }
 }

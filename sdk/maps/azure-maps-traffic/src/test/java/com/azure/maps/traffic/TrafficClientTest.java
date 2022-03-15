@@ -53,9 +53,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
         trafficFlowTileOptions.setZoom(12).setFormat(TileFormat.PNG).setTrafficFlowTileStyle(TrafficFlowTileStyle.RELATIVE_DELAY)
         .setTileIndex(new TileIndex().setX(2044).setY(1360));
         InputStream is = client.getTrafficFlowTile(trafficFlowTileOptions);
-        File file = new File("trafficflowtileactualoutput.png");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] actualResult = Files.readAllBytes(file.toPath());
+        byte[] actualResult = TestUtils.toByteArray(is);
         validateGetTrafficFlowTile(actualResult);
     }
 
@@ -131,9 +129,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
         trafficIncidentTileOptions.setFormat(TileFormat.PNG).setTrafficIncidentTileStyle(TrafficIncidentTileStyle.NIGHT)
         .setTileIndex(new TileIndex().setX(175).setY(408)).setZoom(10);
         InputStream is = client.getTrafficIncidentTile(trafficIncidentTileOptions);
-        File file = new File("trafficincidenttileeactualoutput.png");
-        Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        byte[] actualResult = Files.readAllBytes(file.toPath());
+        byte[] actualResult = TestUtils.toByteArray(is);
         validateGetTrafficIncidentTile(ByteBuffer.wrap(actualResult));
     }
 

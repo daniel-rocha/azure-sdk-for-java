@@ -54,7 +54,7 @@ public class TrafficAsyncClientTest extends TrafficClientTestBase{
     public void testAsyncGetTrafficFlowTile(HttpClient httpClient, TrafficServiceVersion serviceVersion) {
         TrafficAsyncClient client = getTrafficAsyncClient(httpClient, serviceVersion);
         TrafficFlowTileOptions trafficFlowTileOptions = new TrafficFlowTileOptions().setZoom(12).setFormat(TileFormat.PNG).setTrafficFlowTileStyle(TrafficFlowTileStyle.RELATIVE_DELAY)
-        .setTileIndex(new TileIndex().setX(2044).setY(1360));
+        .setTileIndex(new TileIndex().setX(50).setY(50));
         StepVerifier.create(client.getTrafficFlowTile(trafficFlowTileOptions))
         .assertNext(actualResults -> {
             validateGetTrafficFlowTile(actualResults.array());
