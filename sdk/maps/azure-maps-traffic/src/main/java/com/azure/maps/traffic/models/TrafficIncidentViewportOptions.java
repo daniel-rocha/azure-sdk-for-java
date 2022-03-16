@@ -4,7 +4,6 @@ import com.azure.core.models.GeoBoundingBox;
 import com.azure.maps.traffic.implementation.models.ResponseFormat;
 
 public final class TrafficIncidentViewportOptions {
-    private ResponseFormat format;
     private GeoBoundingBox boundingbox;
     private Integer boundingzoom;
     private GeoBoundingBox overviewbox;
@@ -15,24 +14,6 @@ public final class TrafficIncidentViewportOptions {
      * TrafficIncidentViewportOptions constructor
      */
     public TrafficIncidentViewportOptions() {
-    }
-
-    /**
-     * get format
-     * @return ResponseFormat
-     */
-    public ResponseFormat getFormat() {
-        return format;
-    }
-
-    /**
-     * set format
-     * @param format
-     * @return
-     */
-    public TrafficIncidentViewportOptions setFormat(ResponseFormat format) {
-        this.format = format;
-        return this;
     }
 
     /**

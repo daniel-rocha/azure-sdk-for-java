@@ -85,7 +85,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
         client = getTrafficClient(httpClient, serviceVersion);
         TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions();
         trafficFlowSegmentOptions.setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
-        .setFormat(ResponseFormat.JSON).setZoom(10).setCoordinates(new GeoPosition(45,45))
+        .setZoom(10).setCoordinates(new GeoPosition(45,45))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         TrafficFlowSegmentData actualResult = client.getTrafficFlowSegment(trafficFlowSegmentOptions);
         TrafficFlowSegmentData expectedResult = TestUtils.getExpectedTrafficFlowSegment();
@@ -100,7 +100,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
         client = getTrafficClient(httpClient, serviceVersion);
         TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions();
         trafficFlowSegmentOptions.setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
-        .setFormat(ResponseFormat.JSON).setZoom(10).setCoordinates(new GeoPosition(45,45))
+        .setZoom(10).setCoordinates(new GeoPosition(45,45))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         validateGetTrafficFlowSegmentWithResponse(TestUtils.getExpectedTrafficFlowSegment(), 200, client.getTrafficFlowSegmentWithResponse(trafficFlowSegmentOptions, null));
     }
@@ -111,7 +111,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
     public void testInvalidGetTrafficFlowSegmentWithResponse(HttpClient httpClient, TrafficServiceVersion serviceVersion) throws IOException {
         client = getTrafficClient(httpClient, serviceVersion);
         TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions().setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
-        .setFormat(ResponseFormat.JSON).setZoom(-1000).setCoordinates(new GeoPosition(45,45))
+        .setZoom(-1000).setCoordinates(new GeoPosition(45,45))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         final HttpResponseException httpResponseException = assertThrows(HttpResponseException.class,
                 () -> client.getTrafficFlowSegmentWithResponse(trafficFlowSegmentOptions, null));
@@ -162,7 +162,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
     public void testGetTrafficIncidentDetail(HttpClient httpClient, TrafficServiceVersion serviceVersion) throws IOException {
         client = getTrafficClient(httpClient, serviceVersion);
         TrafficIncidentDetailOptions trafficIncidentDetailOptions = new TrafficIncidentDetailOptions();
-        trafficIncidentDetailOptions.setFormat(ResponseFormat.JSON).setIncidentDetailStyle(IncidentDetailStyle.S3)
+        trafficIncidentDetailOptions.setIncidentDetailStyle(IncidentDetailStyle.S3)
         .setBoundingBox(new GeoBoundingBox(45,45,45,45))
         .setBoundingZoom(11).setTrafficmodelid("1335294634919").setExpandCluster(false).setOriginalPosition(false)
         .setIncidentGeometryType(IncidentGeometryType.ORIGINAL).setLanguage("en").setProjectionStandard(ProjectionStandard.EPSG900913);
@@ -178,7 +178,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
     public void testGetTrafficIncidentDetailWithResponse(HttpClient httpClient, TrafficServiceVersion serviceVersion) throws IOException {
         client = getTrafficClient(httpClient, serviceVersion);
         TrafficIncidentDetailOptions trafficIncidentDetailOptions = new TrafficIncidentDetailOptions();
-        trafficIncidentDetailOptions.setFormat(ResponseFormat.JSON).setIncidentDetailStyle(IncidentDetailStyle.S3)
+        trafficIncidentDetailOptions.setIncidentDetailStyle(IncidentDetailStyle.S3)
         .setBoundingBox(new GeoBoundingBox(45,45,45,45))
         .setBoundingZoom(11).setTrafficmodelid("1335294634919").setExpandCluster(false).setOriginalPosition(false)
         .setIncidentGeometryType(IncidentGeometryType.ORIGINAL).setLanguage("en").setProjectionStandard(ProjectionStandard.EPSG900913);
@@ -190,7 +190,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
     @MethodSource("com.azure.maps.traffic.TestUtils#getTestParameters")
     public void testInvalidGetTrafficIncidentDetailWithResponse(HttpClient httpClient, TrafficServiceVersion serviceVersion) throws IOException {
         client = getTrafficClient(httpClient, serviceVersion);
-        TrafficIncidentDetailOptions trafficIncidentDetailOptions = new TrafficIncidentDetailOptions().setFormat(ResponseFormat.JSON).setIncidentDetailStyle(IncidentDetailStyle.S3)
+        TrafficIncidentDetailOptions trafficIncidentDetailOptions = new TrafficIncidentDetailOptions().setIncidentDetailStyle(IncidentDetailStyle.S3)
         .setBoundingBox(new GeoBoundingBox(45,45,45,45))
         .setBoundingZoom(-1000).setTrafficmodelid("1335294634919").setExpandCluster(false).setOriginalPosition(false)
         .setIncidentGeometryType(IncidentGeometryType.ORIGINAL).setLanguage("en").setProjectionStandard(ProjectionStandard.EPSG900913);
@@ -206,7 +206,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
         client = getTrafficClient(httpClient, serviceVersion);
         TrafficIncidentViewportOptions trafficIncidentViewportOptions= new TrafficIncidentViewportOptions();
         trafficIncidentViewportOptions.setBoundingBox(new GeoBoundingBox(45,45,45,45)).setOverview(new GeoBoundingBox(45,45,45,45))
-        .setBoundingZoom(2).setOverviewZoom(2).setFormat(ResponseFormat.JSON).setCopyright(true);
+        .setBoundingZoom(2).setOverviewZoom(2).setCopyright(true);
         TrafficIncidentViewport actualResult = client.getTrafficIncidentViewport(trafficIncidentViewportOptions);
         TrafficIncidentViewport expectedResult = TestUtils.getExpectedTrafficIncidentViewport();
         validateTrafficIncidentViewport(actualResult, expectedResult);
@@ -220,7 +220,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
         client = getTrafficClient(httpClient, serviceVersion);
         TrafficIncidentViewportOptions trafficIncidentViewportOptions= new TrafficIncidentViewportOptions();
         trafficIncidentViewportOptions.setBoundingBox(new GeoBoundingBox(45,45,45,45)).setOverview(new GeoBoundingBox(45,45,45,45))
-        .setBoundingZoom(2).setOverviewZoom(2).setFormat(ResponseFormat.JSON).setCopyright(true);
+        .setBoundingZoom(2).setOverviewZoom(2).setCopyright(true);
         validateTrafficIncidentViewportWithResponse(TestUtils.getExpectedTrafficIncidentViewport(), 200, client.getTrafficIncidentViewportWithResponse(trafficIncidentViewportOptions, null));
     }
 
@@ -230,7 +230,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
     public void testInvalidGetTrafficIncidentViewportWithResponse(HttpClient httpClient, TrafficServiceVersion serviceVersion) throws IOException {
         client = getTrafficClient(httpClient, serviceVersion);
         TrafficIncidentViewportOptions trafficIncidentViewportOptions= new TrafficIncidentViewportOptions().setBoundingBox(new GeoBoundingBox(45,45,45,45)).setOverview(new GeoBoundingBox(45,45,45,45))
-        .setBoundingZoom(-1000).setOverviewZoom(2).setFormat(ResponseFormat.JSON).setCopyright(true);
+        .setBoundingZoom(-1000).setOverviewZoom(2).setCopyright(true);
         final HttpResponseException httpResponseException = assertThrows(HttpResponseException.class,
                 () -> client.getTrafficIncidentViewportWithResponse(trafficIncidentViewportOptions, null));
             assertEquals(400, httpResponseException.getResponse().getStatusCode());

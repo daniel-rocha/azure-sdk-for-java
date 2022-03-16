@@ -1,10 +1,8 @@
 package com.azure.maps.traffic.models;
 
 import com.azure.core.models.GeoBoundingBox;
-import com.azure.maps.traffic.implementation.models.ResponseFormat;
 
 public final class TrafficIncidentDetailOptions {
-    private ResponseFormat format;
     private IncidentDetailStyle style;
     private GeoBoundingBox boundingbox;
     private Integer boundingZoom;
@@ -19,24 +17,6 @@ public final class TrafficIncidentDetailOptions {
      * TrafficIncidentDetailOptions constructor
      */
     public TrafficIncidentDetailOptions() {
-    }
-
-    /**
-     * get format
-     * @return ResponseFormat
-     */
-    public ResponseFormat getFormat() {
-        return format;
-    }
-
-    /**
-     * sets response format
-     * @param responseFormat
-     * @return
-     */
-    public TrafficIncidentDetailOptions setFormat(ResponseFormat responseFormat) {
-        this.format = responseFormat;
-        return this;
     }
 
     /**

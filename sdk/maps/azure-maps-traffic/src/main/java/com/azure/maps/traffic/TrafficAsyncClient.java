@@ -15,6 +15,7 @@ import com.azure.core.util.Context;
 import com.azure.maps.traffic.implementation.TrafficsImpl;
 import com.azure.maps.traffic.implementation.helpers.Utility;
 import com.azure.maps.traffic.models.TrafficFlowSegmentData;
+import com.azure.maps.traffic.implementation.models.ResponseFormat;
 import com.azure.maps.traffic.implementation.models.TrafficIncidentDetail;
 import com.azure.maps.traffic.models.TrafficIncidentViewport;
 import com.azure.maps.traffic.models.TrafficFlowSegmentOptions;
@@ -238,7 +239,7 @@ public final class TrafficAsyncClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<TrafficFlowSegmentData>> getTrafficFlowSegmentWithResponse(TrafficFlowSegmentOptions options, Context context) {
             return this.serviceClient.getTrafficFlowSegmentWithResponseAsync(
-                   options.getFormat(), 
+                   ResponseFormat.JSON, 
                    options.getTrafficFlowSegmentStyle(), 
                    options.getZoom(), 
                    Utility.toCoordinates(options.getCoordinates()), 
@@ -499,7 +500,7 @@ public final class TrafficAsyncClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<TrafficIncidentDetail>> getTrafficIncidentDetailWithResponse(TrafficIncidentDetailOptions options, Context context) {
         return this.serviceClient.getTrafficIncidentDetailWithResponseAsync(
-            options.getFormat(),
+            ResponseFormat.JSON,
             options.getIncidentDetailStyle(),
             Utility.toBoundingBox(options.getBoundingBox()),
             options.getBoundingZoom(),
@@ -641,7 +642,7 @@ public final class TrafficAsyncClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<TrafficIncidentViewport>> getTrafficIncidentViewportWithResponse(TrafficIncidentViewportOptions options, Context context) {
             return this.serviceClient.getTrafficIncidentViewportWithResponseAsync(
-                options.getFormat(), 
+                ResponseFormat.JSON, 
                 Utility.toBoundingBox(options.getBoundingBox()),
                 options.getBoundingZoom(), 
                 Utility.toBoundingBox(options.getOverviewBox()), 
