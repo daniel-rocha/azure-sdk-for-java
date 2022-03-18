@@ -90,7 +90,7 @@ public final class TrafficClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SimpleResponse<InputStream> getTrafficFlowTileWithResponse(TrafficFlowTileOptions options, Context context) {
-        Mono<StreamResponse> monoResp = this.asyncClient.getTrafficFlowTileWithResponse(options, null); 
+        Mono<StreamResponse> monoResp = this.asyncClient.getTrafficFlowTileWithResponse(options, context); 
         StreamResponse resp = monoResp.block();
         Iterator<ByteBufferBackedInputStream> iterator = resp.getValue().map(ByteBufferBackedInputStream::new).toStream().iterator();
         return new SimpleResponse<InputStream>(resp.getRequest(), resp.getStatusCode(), resp.getHeaders(), getInputStream(iterator));
@@ -152,7 +152,7 @@ public final class TrafficClient {
      */    
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TrafficFlowSegmentData> getTrafficFlowSegmentWithResponse(TrafficFlowSegmentOptions options, Context context) {
-        return this.asyncClient.getTrafficFlowSegmentWithResponse(options).block();
+        return this.asyncClient.getTrafficFlowSegmentWithResponse(options, context).block();
     }
 
     /**
@@ -201,7 +201,7 @@ public final class TrafficClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SimpleResponse<InputStream> getTrafficIncidentTileWithResponse(TrafficIncidentTileOptions options, Context context) {
-        Mono<StreamResponse> monoResp = this.asyncClient.getTrafficIncidentTileWithResponse(options); 
+        Mono<StreamResponse> monoResp = this.asyncClient.getTrafficIncidentTileWithResponse(options, context); 
         StreamResponse resp = monoResp.block();
         Iterator<ByteBufferBackedInputStream> iterator = resp.getValue().map(ByteBufferBackedInputStream::new).toStream().iterator();
         return new SimpleResponse<InputStream>(resp.getRequest(), resp.getStatusCode(), resp.getHeaders(), getInputStream(iterator));
@@ -295,7 +295,7 @@ public final class TrafficClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TrafficIncidentDetail> getTrafficIncidentDetailWithResponse(TrafficIncidentDetailOptions options, Context context) {
-        return this.asyncClient.getTrafficIncidentDetailWithResponse(options).block();
+        return this.asyncClient.getTrafficIncidentDetailWithResponse(options, context).block();
     }
 
     /**
@@ -368,7 +368,7 @@ public final class TrafficClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TrafficIncidentViewport> getTrafficIncidentViewportWithResponse(TrafficIncidentViewportOptions options, Context context) {
-        return this.asyncClient.getTrafficIncidentViewportWithResponse(options).block();
+        return this.asyncClient.getTrafficIncidentViewportWithResponse(options, context).block();
     }
 
     private InputStream getInputStream(Iterator<ByteBufferBackedInputStream> iterator) {

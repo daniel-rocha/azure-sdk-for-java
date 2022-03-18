@@ -240,14 +240,14 @@ public final class TrafficAsyncClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<TrafficFlowSegmentData>> getTrafficFlowSegmentWithResponse(TrafficFlowSegmentOptions options, Context context) {
         return this.serviceClient.getTrafficFlowSegmentWithResponseAsync(
-                ResponseFormat.JSON, 
-                options.getTrafficFlowSegmentStyle(), 
-                options.getZoom(), 
-                Utility.toCoordinates(options.getCoordinates()), 
-                options.getUnit(), 
-                options.getThickness(),
-                options.getOpenLr(),
-                context);
+            ResponseFormat.JSON, 
+            options.getTrafficFlowSegmentStyle(), 
+            options.getZoom(), 
+            Utility.toCoordinates(options.getCoordinates()), 
+            options.getUnit(), 
+            options.getThickness(),
+            options.getOpenLr(),
+            context);
     }
 
     /**
