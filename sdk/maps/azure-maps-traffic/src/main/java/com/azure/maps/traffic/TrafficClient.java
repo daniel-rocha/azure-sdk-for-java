@@ -181,8 +181,8 @@ public final class TrafficClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public InputStream getTrafficIncidentTile(TrafficIncidentTileOptions options) {
-                Iterator<ByteBufferBackedInputStream> iterator = this.asyncClient.getTrafficIncidentTile(options).map(ByteBufferBackedInputStream::new).toStream().iterator();
-                return getInputStream(iterator);
+        Iterator<ByteBufferBackedInputStream> iterator = this.asyncClient.getTrafficIncidentTile(options).map(ByteBufferBackedInputStream::new).toStream().iterator();
+        return getInputStream(iterator);
     }
 
     /**

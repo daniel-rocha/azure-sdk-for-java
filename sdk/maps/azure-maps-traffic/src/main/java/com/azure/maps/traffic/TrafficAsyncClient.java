@@ -239,15 +239,15 @@ public final class TrafficAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<TrafficFlowSegmentData>> getTrafficFlowSegmentWithResponse(TrafficFlowSegmentOptions options, Context context) {
-            return this.serviceClient.getTrafficFlowSegmentWithResponseAsync(
-                   ResponseFormat.JSON, 
-                   options.getTrafficFlowSegmentStyle(), 
-                   options.getZoom(), 
-                   Utility.toCoordinates(options.getCoordinates()), 
-                   options.getUnit(), 
-                   options.getThickness(),
-                   options.getOpenLr(),
-                   context);
+        return this.serviceClient.getTrafficFlowSegmentWithResponseAsync(
+                ResponseFormat.JSON, 
+                options.getTrafficFlowSegmentStyle(), 
+                options.getZoom(), 
+                Utility.toCoordinates(options.getCoordinates()), 
+                options.getUnit(), 
+                options.getThickness(),
+                options.getOpenLr(),
+                context);
     }
 
     /**
@@ -276,10 +276,10 @@ public final class TrafficAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Flux<ByteBuffer> getTrafficIncidentTile(TrafficIncidentTileOptions options) {
-                Mono<StreamResponse> responseMono = this.getTrafficIncidentTileWithResponse(options, null);
-                return responseMono.flatMapMany(response -> {
-                    return response.getValue();
-                }); 
+        Mono<StreamResponse> responseMono = this.getTrafficIncidentTileWithResponse(options, null);
+        return responseMono.flatMapMany(response -> {
+            return response.getValue();
+        }); 
     }
 
     /**
@@ -645,13 +645,13 @@ public final class TrafficAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<TrafficIncidentViewport>> getTrafficIncidentViewportWithResponse(TrafficIncidentViewportOptions options, Context context) {
-            return this.serviceClient.getTrafficIncidentViewportWithResponseAsync(
-                ResponseFormat.JSON, 
-                Utility.toBoundingBox(options.getBoundingBox()),
-                options.getBoundingZoom(), 
-                Utility.toBoundingBox(options.getOverviewBox()), 
-                options.getOverviewZoom(), 
-                options.getCopyright(),
-                context);
+        return this.serviceClient.getTrafficIncidentViewportWithResponseAsync(
+            ResponseFormat.JSON, 
+            Utility.toBoundingBox(options.getBoundingBox()),
+            options.getBoundingZoom(), 
+            Utility.toBoundingBox(options.getOverviewBox()), 
+            options.getOverviewZoom(), 
+            options.getCopyright(),
+            context);
     }
 }
