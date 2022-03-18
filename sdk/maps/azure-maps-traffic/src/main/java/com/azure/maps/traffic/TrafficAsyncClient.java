@@ -130,7 +130,8 @@ public final class TrafficAsyncClient {
             options.getTrafficFlowTileStyle(), 
             options.getZoom(), 
             options.getTileIndex(), 
-            options.getThickness());
+            options.getThickness(),
+            context);
     }
 
     /**
@@ -245,7 +246,8 @@ public final class TrafficAsyncClient {
                    Utility.toCoordinates(options.getCoordinates()), 
                    options.getUnit(), 
                    options.getThickness(),
-                   options.getOpenLr());
+                   options.getOpenLr(),
+                   context);
     }
 
     /**
@@ -340,7 +342,8 @@ public final class TrafficAsyncClient {
             options.getTrafficIncidentTileStyle(), 
             options.getZoom(), 
             options.getTileIndex(),
-            options.getTrafficState());
+            options.getTrafficState(),
+            context);
     }
 
     /**
@@ -509,7 +512,8 @@ public final class TrafficAsyncClient {
             options.getProjectionStandard(),
             options.getIncidentGeometryType(),
             options.getExpandCluster(),
-            options.getOriginalPosition());
+            options.getOriginalPosition(),
+            context);
     }
 
     /**
@@ -647,6 +651,7 @@ public final class TrafficAsyncClient {
                 options.getBoundingZoom(), 
                 Utility.toBoundingBox(options.getOverviewBox()), 
                 options.getOverviewZoom(), 
-                options.getCopyright());
+                options.getCopyright(),
+                context);
     }
 }
