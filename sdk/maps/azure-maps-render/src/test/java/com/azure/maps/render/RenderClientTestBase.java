@@ -101,6 +101,7 @@ public class RenderClientTestBase extends TestBase {
     static void validateGetMapTile(InputStream actual) throws IOException {
         assertNotNull(actual);
         assertTrue(actual.available() > 0);
+        actual.close();
     }
 
     static void validateGetMapTileWithResponse(int expectedStatusCode, SimpleResponse<InputStream> response) throws IOException {
@@ -164,6 +165,7 @@ public class RenderClientTestBase extends TestBase {
     static void validateGetMapStaticImage(InputStream actual) throws IOException {
         assertNotNull(actual);
         assertTrue(actual.available() > 0);
+        actual.close();
     }
 
     static void validateGetMapStaticImageWithResponse(int expectedStatusCode, SimpleResponse<InputStream> response) throws IOException {

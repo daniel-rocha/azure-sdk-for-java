@@ -100,7 +100,7 @@ public class TrafficAsyncClientTest extends TrafficClientTestBase{
     public void testAsyncGetTrafficFlowSegment(HttpClient httpClient, TrafficServiceVersion serviceVersion) {
         TrafficAsyncClient client = getTrafficAsyncClient(httpClient, serviceVersion);
         TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions().setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
-        .setZoom(10).setCoordinates(new GeoPosition(45,45))
+        .setZoom(10).setCoordinates(new GeoPosition(4.84239,52.41072))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         StepVerifier.create(client.getTrafficFlowSegment(trafficFlowSegmentOptions))
         .assertNext(actualResults -> {
@@ -119,7 +119,7 @@ public class TrafficAsyncClientTest extends TrafficClientTestBase{
     public void testAsyncGetTrafficFlowSegmentWithResponse(HttpClient httpClient, TrafficServiceVersion serviceVersion) {
         TrafficAsyncClient client = getTrafficAsyncClient(httpClient, serviceVersion);
         TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions().setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
-        .setZoom(10).setCoordinates(new GeoPosition(45,45))
+        .setZoom(10).setCoordinates(new GeoPosition(4.84239,52.41072))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         StepVerifier.create(client.getTrafficFlowSegmentWithResponse(trafficFlowSegmentOptions))
                 .assertNext(response ->

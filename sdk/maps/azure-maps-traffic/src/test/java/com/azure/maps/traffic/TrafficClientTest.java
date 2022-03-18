@@ -84,7 +84,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
         client = getTrafficClient(httpClient, serviceVersion);
         TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions();
         trafficFlowSegmentOptions.setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
-        .setZoom(10).setCoordinates(new GeoPosition(45,45))
+        .setZoom(10).setCoordinates(new GeoPosition(4.84239,52.41072))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         TrafficFlowSegmentData actualResult = client.getTrafficFlowSegment(trafficFlowSegmentOptions);
         TrafficFlowSegmentData expectedResult = TestUtils.getExpectedTrafficFlowSegment();
@@ -99,7 +99,7 @@ public class TrafficClientTest extends TrafficClientTestBase {
         client = getTrafficClient(httpClient, serviceVersion);
         TrafficFlowSegmentOptions trafficFlowSegmentOptions = new TrafficFlowSegmentOptions();
         trafficFlowSegmentOptions.setTrafficFlowSegmentStyle(TrafficFlowSegmentStyle.ABSOLUTE).setOpenLr(false)
-        .setZoom(10).setCoordinates(new GeoPosition(45,45))
+        .setZoom(10).setCoordinates(new GeoPosition(4.84239,52.41072))
         .setThickness(2).setUnit(SpeedUnit.MPH);
         validateGetTrafficFlowSegmentWithResponse(TestUtils.getExpectedTrafficFlowSegment(), 200, client.getTrafficFlowSegmentWithResponse(trafficFlowSegmentOptions, null));
     }
