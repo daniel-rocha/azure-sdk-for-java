@@ -12,7 +12,6 @@ import com.azure.core.models.GeoPosition;
 import com.azure.maps.traffic.models.IncidentDetailStyle;
 import com.azure.maps.traffic.models.IncidentGeometryType;
 import com.azure.maps.traffic.models.ProjectionStandard;
-import com.azure.maps.traffic.implementation.models.ResponseFormat;
 import com.azure.maps.traffic.models.SpeedUnit;
 import com.azure.maps.traffic.models.TileFormat;
 import com.azure.maps.traffic.models.TileIndex;

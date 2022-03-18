@@ -17,7 +17,7 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.http.rest.StreamResponse;
 import com.azure.core.util.Context;
 import com.azure.maps.traffic.models.TrafficFlowSegmentData;
-import com.azure.maps.traffic.implementation.models.TrafficIncidentDetail;
+import com.azure.maps.traffic.models.TrafficIncidentDetail;
 import com.azure.maps.traffic.models.TrafficIncidentViewport;
 import com.azure.maps.traffic.models.TrafficFlowSegmentOptions;
 import com.azure.maps.traffic.models.TrafficFlowTileOptions;

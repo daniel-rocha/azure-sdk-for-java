@@ -16,7 +16,7 @@ import com.azure.maps.traffic.implementation.TrafficsImpl;
 import com.azure.maps.traffic.implementation.helpers.Utility;
 import com.azure.maps.traffic.models.TrafficFlowSegmentData;
 import com.azure.maps.traffic.implementation.models.ResponseFormat;
-import com.azure.maps.traffic.implementation.models.TrafficIncidentDetail;
+import com.azure.maps.traffic.models.TrafficIncidentDetail;
 import com.azure.maps.traffic.models.TrafficIncidentViewport;
 import com.azure.maps.traffic.models.TrafficFlowSegmentOptions;
 import com.azure.maps.traffic.models.TrafficFlowTileOptions;
@@ -66,10 +66,10 @@ public final class TrafficAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Flux<ByteBuffer> getTrafficFlowTile(TrafficFlowTileOptions options) {
-                Mono<StreamResponse> responseMono = this.getTrafficFlowTileWithResponse(options, null);
-                    return responseMono.flatMapMany(response -> {
-                        return response.getValue();
-                    });  
+        Mono<StreamResponse> responseMono = this.getTrafficFlowTileWithResponse(options, null);
+        return responseMono.flatMapMany(response -> {
+            return response.getValue();
+        });  
     }
 
     /**
@@ -97,7 +97,7 @@ public final class TrafficAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<StreamResponse> getTrafficFlowTileWithResponse(TrafficFlowTileOptions options) {
-                return this.getTrafficFlowTileWithResponse(options, null);
+        return this.getTrafficFlowTileWithResponse(options, null);
     }
 
     /**
@@ -165,7 +165,7 @@ public final class TrafficAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<TrafficFlowSegmentData> getTrafficFlowSegment(TrafficFlowSegmentOptions options) {
-                Mono<Response<TrafficFlowSegmentData>> result = this.getTrafficFlowSegmentWithResponse(options, null);
+        Mono<Response<TrafficFlowSegmentData>> result = this.getTrafficFlowSegmentWithResponse(options, null);
         return result.flatMap(response -> {
             return Mono.just(response.getValue());
         });

@@ -27,7 +27,7 @@ import com.azure.core.test.TestBase;
 import com.azure.core.test.TestMode;
 import com.azure.core.util.Configuration;
 import com.azure.identity.EnvironmentCredentialBuilder;
-import com.azure.maps.traffic.implementation.models.TrafficIncidentDetail;
+import com.azure.maps.traffic.models.TrafficIncidentDetail;
 import com.azure.maps.traffic.models.TrafficFlowSegmentData;
 import com.azure.maps.traffic.models.TrafficIncidentViewport;
 

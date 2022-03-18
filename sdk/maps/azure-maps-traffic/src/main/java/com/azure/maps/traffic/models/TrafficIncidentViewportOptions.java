@@ -1,7 +1,6 @@
 package com.azure.maps.traffic.models;
 
 import com.azure.core.models.GeoBoundingBox;
-import com.azure.maps.traffic.implementation.models.ResponseFormat;
 
 public final class TrafficIncidentViewportOptions {
     private GeoBoundingBox boundingbox;
