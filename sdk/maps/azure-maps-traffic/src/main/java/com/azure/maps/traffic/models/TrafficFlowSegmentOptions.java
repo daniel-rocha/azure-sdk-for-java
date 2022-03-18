@@ -1,10 +1,8 @@
 package com.azure.maps.traffic.models;
 
 import com.azure.core.models.GeoPosition;
-import com.azure.maps.traffic.implementation.models.ResponseFormat;
 
 public final class TrafficFlowSegmentOptions {
-    private ResponseFormat format;
     private TrafficFlowSegmentStyle style;
     private Integer zoom;
     private GeoPosition coordinates;
@@ -16,24 +14,6 @@ public final class TrafficFlowSegmentOptions {
      * Constructor for TrafficFlowSegmentOptions
      */
     public TrafficFlowSegmentOptions() {
-    }
-
-    /**
-     * Get response format
-     * @return ResponseFormat
-     */
-    public ResponseFormat getFormat() {
-        return format;
-    }
-
-    /**
-     * Sets response format
-     * @param responseFormat
-     * @return
-     */
-    public TrafficFlowSegmentOptions setFormat(ResponseFormat responseFormat) {
-        this.format = responseFormat;
-        return this;
     }
 
     /**
