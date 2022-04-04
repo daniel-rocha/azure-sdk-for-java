@@ -36,4 +36,6 @@ polling: {}
 models-subpackage: implementation.models
 custom-types-subpackage: models
 custom-types: ErrorAdditionalInfo,ErrorDetail,ErrorResponse,ErrorResponseException,Elevation,ElevationResult
+customization-jar-path: target/azure-maps-elevation-customization-1.0.0-beta.1.jar
+customization-class: ElevationCustomization
 ```
