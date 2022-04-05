@@ -8,6 +8,7 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.Response;
+import com.azure.core.models.GeoBoundingBox;
 import com.azure.core.models.GeoPosition;
 import com.azure.core.util.Context;
 import com.azure.maps.elevation.models.ElevationResult;
@@ -52,7 +53,7 @@ public final class ElevationClient {
      * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ElevationResult getDataForPoints(List<String> points) {
+    public ElevationResult getDataForPoints(List<GeoPosition> points) {
         return this.asyncClient.getDataForPoints(points).block();
     }
  
@@ -81,7 +82,7 @@ public final class ElevationClient {
      * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ElevationResult> getDataForPointsWithResponse(List<String> points, Context context) {
+    public Response<ElevationResult> getDataForPointsWithResponse(List<GeoPosition> points, Context context) {
         return this.asyncClient.getDataForPointsWithResponse(points, context).block();
     }
 
@@ -168,7 +169,7 @@ public final class ElevationClient {
      * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ElevationResult getDataForPolyline(List<String> lines, Integer samples) {
+    public ElevationResult getDataForPolyline(List<GeoPosition> lines, Integer samples) {
         return this.asyncClient.getDataForPolyline(lines, samples).block();
     }
 
@@ -203,7 +204,7 @@ public final class ElevationClient {
      * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ElevationResult> getDataForPolylineWithResponse(List<String> lines, Integer samples, Context context) {
+    public Response<ElevationResult> getDataForPolylineWithResponse(List<GeoPosition> lines, Integer samples, Context context) {
         return this.asyncClient.getDataForPolylineWithResponse(lines, samples, context).block();
     }
 
@@ -302,7 +303,7 @@ public final class ElevationClient {
      * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ElevationResult getDataForBoundingBox(List<Float> bounds, int rows, int columns) {
+    public ElevationResult getDataForBoundingBox(GeoBoundingBox bounds, int rows, int columns) {
         return this.asyncClient.getDataForBoundingBox(bounds, rows, columns).block();
     }
 
@@ -333,7 +334,7 @@ public final class ElevationClient {
      * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ElevationResult> getDataForBoundingBoxWithResponse(List<Float> bounds, int rows, int columns, Context context) {
+    public Response<ElevationResult> getDataForBoundingBoxWithResponse(GeoBoundingBox bounds, int rows, int columns, Context context) {
         return this.asyncClient.getDataForBoundingBoxWithResponse(bounds, rows, columns, context).block();
     }
 }

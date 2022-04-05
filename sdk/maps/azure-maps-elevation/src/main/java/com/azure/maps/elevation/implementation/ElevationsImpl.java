@@ -69,7 +69,7 @@ public final class ElevationsImpl {
                 @HeaderParam("x-ms-client-id") String clientId,
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("format") JsonFormat format,
-                @QueryParam(value = "points", encoded = true) String points,
+                @QueryParam(value = "points", encoded = false) String points,
                 @HeaderParam("Accept") String accept,
                 Context context);
 
@@ -93,7 +93,7 @@ public final class ElevationsImpl {
                 @HeaderParam("x-ms-client-id") String clientId,
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("format") JsonFormat format,
-                @QueryParam(value = "lines", encoded = true) String lines,
+                @QueryParam(value = "lines", encoded = false) String lines,
                 @QueryParam("samples") Integer samples,
                 @HeaderParam("Accept") String accept,
                 Context context);

@@ -35,5 +35,6 @@ public class ElevationCustomization extends Customization {
             "       return new GeoPosition(this.coordinate.getLongitude(), this.coordinate.getLatitude());" +
             "}";
         classCustomization.addMethod(getCoordinateMethod, Arrays.asList("com.azure.core.models.GeoPosition"));
+        classCustomization.removeMethod("setCoordinate");
     }
 }
