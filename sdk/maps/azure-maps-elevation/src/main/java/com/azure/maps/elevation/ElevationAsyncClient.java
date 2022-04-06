@@ -447,7 +447,7 @@ public final class ElevationAsyncClient {
      * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ElevationResult> getDataForBoundingBox(GeoBoundingBox bounds, int rows, int columns) {
+    public Mono<ElevationResult> getDataForBoundingBox(GeoBoundingBox bounds, Integer rows, Integer columns) {
         Mono<Response<ElevationResult>> result = this.getDataForBoundingBoxWithResponse(bounds, rows, columns);
         return result.flatMap(response -> {
             return Mono.just(response.getValue());
@@ -480,7 +480,7 @@ public final class ElevationAsyncClient {
      * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ElevationResult>> getDataForBoundingBoxWithResponse(GeoBoundingBox bounds, int rows, int columns) {
+    public Mono<Response<ElevationResult>> getDataForBoundingBoxWithResponse(GeoBoundingBox bounds, Integer rows, Integer columns) {
         return this.getDataForBoundingBoxWithResponse(bounds, rows, columns, null);
     }
 
@@ -512,7 +512,7 @@ public final class ElevationAsyncClient {
      * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<ElevationResult>> getDataForBoundingBoxWithResponse(GeoBoundingBox bounds, int rows, int columns, Context context) {
+    Mono<Response<ElevationResult>> getDataForBoundingBoxWithResponse(GeoBoundingBox bounds, Integer rows, Integer columns, Context context) {
         return this.serviceClient.getDataForBoundingBoxWithResponseAsync(JsonFormat.JSON, Utility.geoBoundingBoxToFloat(bounds), rows, columns, context);
     }
 }

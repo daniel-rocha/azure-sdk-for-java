@@ -303,7 +303,7 @@ public final class ElevationClient {
      * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ElevationResult getDataForBoundingBox(GeoBoundingBox bounds, int rows, int columns) {
+    public ElevationResult getDataForBoundingBox(GeoBoundingBox bounds, Integer rows, Integer columns) {
         return this.asyncClient.getDataForBoundingBox(bounds, rows, columns).block();
     }
 
@@ -334,7 +334,7 @@ public final class ElevationClient {
      * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ElevationResult> getDataForBoundingBoxWithResponse(GeoBoundingBox bounds, int rows, int columns, Context context) {
+    public Response<ElevationResult> getDataForBoundingBoxWithResponse(GeoBoundingBox bounds, Integer rows, Integer columns, Context context) {
         return this.asyncClient.getDataForBoundingBoxWithResponse(bounds, rows, columns, context).block();
     }
 }

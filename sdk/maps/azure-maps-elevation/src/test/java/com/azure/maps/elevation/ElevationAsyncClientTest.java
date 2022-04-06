@@ -102,14 +102,14 @@ public class ElevationAsyncClientTest extends ElevationClientTestBase {
     public void testAsyncPostDataForPointsWithResponse(HttpClient httpClient, ElevationServiceVersion serviceVersion) {
         ElevationAsyncClient client = getElevationAsyncClient(httpClient, serviceVersion);
         StepVerifier.create(client.postDataForPointsWithResponse(Arrays.asList(new GeoPosition(-121.66853362143819, 46.846464798637129),
-            new GeoPosition(-121.68853362143818, 46.856464798637127)), null))
-                .assertNext(response -> {
-                    try {
-                        validatePostDataForPointsWithResponse(TestUtils.getExpectedPostDataForPoints(), 200, response);
-                    } catch (IOException e) {
-                        Assertions.fail("Unable to get post data for points");
-                    }
-                }).verifyComplete();
+                new GeoPosition(-121.68853362143818, 46.856464798637127)), null))
+            .assertNext(response -> {
+                try {
+                    validatePostDataForPointsWithResponse(TestUtils.getExpectedPostDataForPoints(), 200, response);
+                } catch (IOException e) {
+                    Assertions.fail("Unable to get post data for points");
+                }
+            }).verifyComplete();
     }
 
     // Case 2: 400 invalid input

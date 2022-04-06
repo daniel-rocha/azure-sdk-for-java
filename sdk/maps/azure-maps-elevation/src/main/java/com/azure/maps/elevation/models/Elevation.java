@@ -7,7 +7,6 @@
 package com.azure.maps.elevation.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.models.GeoPosition;
 import com.azure.maps.elevation.implementation.models.LatLongPair;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -27,6 +26,15 @@ public final class Elevation {
     private Float elevationInMeter;
 
     /**
+     * Get the coordinate property: A location represented as a latitude and longitude.
+     *
+     * @return the coordinate value.
+     */
+    public LatLongPair getCoordinate() {
+        return this.coordinate;
+    }
+
+    /**
      * Set the coordinate property: A location represented as a latitude and longitude.
      *
      * @param coordinate the coordinate value to set.
@@ -44,10 +52,5 @@ public final class Elevation {
      */
     public Float getElevationInMeter() {
         return this.elevationInMeter;
-    }
-
-    /** * Returns a {@link GeoPosition} coordinate.** return the coordinate */
-    public GeoPosition getCoordinate() {
-        return new GeoPosition(this.coordinate.getLongitude(), this.coordinate.getLatitude());
     }
 }
