@@ -69,7 +69,7 @@ public final class ElevationsImpl {
                 @HeaderParam("x-ms-client-id") String clientId,
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("format") JsonFormat format,
-                @QueryParam(value = "points", encoded = false) String points,
+                @QueryParam(value = "points", encoded = true) String points,
                 @HeaderParam("Accept") String accept,
                 Context context);
 
@@ -93,7 +93,7 @@ public final class ElevationsImpl {
                 @HeaderParam("x-ms-client-id") String clientId,
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("format") JsonFormat format,
-                @QueryParam(value = "lines", encoded = false) String lines,
+                @QueryParam(value = "lines", encoded = true) String lines,
                 @QueryParam("samples") Integer samples,
                 @HeaderParam("Accept") String accept,
                 Context context);
@@ -127,7 +127,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Points API provides elevation data for one or more points. A point is defined in lat,long
      * coordinate format.
@@ -148,8 +148,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ElevationResult>> getDataForPointsWithResponseAsync(JsonFormat format, List<String> points) {
@@ -169,7 +168,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Points API provides elevation data for one or more points. A point is defined in lat,long
      * coordinate format.
@@ -191,8 +190,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ElevationResult>> getDataForPointsWithResponseAsync(
@@ -211,7 +209,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Points API provides elevation data for one or more points. A point is defined in lat,long
      * coordinate format.
@@ -232,7 +230,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API on successful completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ElevationResult> getDataForPointsAsync(JsonFormat format, List<String> points) {
@@ -248,7 +246,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Points API provides elevation data for one or more points. A point is defined in lat,long
      * coordinate format.
@@ -270,7 +268,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API on successful completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ElevationResult> getDataForPointsAsync(JsonFormat format, List<String> points, Context context) {
@@ -286,7 +284,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Points API provides elevation data for one or more points. A point is defined in lat,long
      * coordinate format.
@@ -315,7 +313,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Points API provides elevation data for one or more points. A point is defined in lat,long
      * coordinate format.
@@ -337,7 +335,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ElevationResult> getDataForPointsWithResponse(
@@ -346,7 +344,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Post Data for Points API provides elevation data for multiple points. A point is defined lon/lat
      * coordinate format.
@@ -365,8 +363,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ElevationResult>> postDataForPointsWithResponseAsync(
@@ -385,7 +382,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Post Data for Points API provides elevation data for multiple points. A point is defined lon/lat
      * coordinate format.
@@ -405,8 +402,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ElevationResult>> postDataForPointsWithResponseAsync(
@@ -423,7 +419,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Post Data for Points API provides elevation data for multiple points. A point is defined lon/lat
      * coordinate format.
@@ -442,7 +438,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API on successful completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ElevationResult> postDataForPointsAsync(JsonFormat format, List<LatLongPairAbbreviated> points) {
@@ -458,7 +454,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Post Data for Points API provides elevation data for multiple points. A point is defined lon/lat
      * coordinate format.
@@ -478,7 +474,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API on successful completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ElevationResult> postDataForPointsAsync(
@@ -495,7 +491,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Post Data for Points API provides elevation data for multiple points. A point is defined lon/lat
      * coordinate format.
@@ -522,7 +518,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Post Data for Points API provides elevation data for multiple points. A point is defined lon/lat
      * coordinate format.
@@ -542,7 +538,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ElevationResult> postDataForPointsWithResponse(
@@ -551,7 +547,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Polyline API provides elevation data along a polyline.
      *
@@ -578,8 +574,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ElevationResult>> getDataForPolylineWithResponseAsync(
@@ -601,7 +596,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Polyline API provides elevation data along a polyline.
      *
@@ -629,8 +624,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ElevationResult>> getDataForPolylineWithResponseAsync(
@@ -650,7 +644,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Polyline API provides elevation data along a polyline.
      *
@@ -677,7 +671,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API on successful completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ElevationResult> getDataForPolylineAsync(JsonFormat format, List<String> lines, Integer samples) {
@@ -693,7 +687,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Polyline API provides elevation data along a polyline.
      *
@@ -721,7 +715,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API on successful completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ElevationResult> getDataForPolylineAsync(
@@ -738,7 +732,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Polyline API provides elevation data along a polyline.
      *
@@ -773,7 +767,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Polyline API provides elevation data along a polyline.
      *
@@ -801,7 +795,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ElevationResult> getDataForPolylineWithResponse(
@@ -810,7 +804,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Post Data for Polyline API provides elevation data along a polyline.
      *
@@ -837,8 +831,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ElevationResult>> postDataForPolylineWithResponseAsync(
@@ -858,7 +851,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Post Data for Polyline API provides elevation data along a polyline.
      *
@@ -886,8 +879,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ElevationResult>> postDataForPolylineWithResponseAsync(
@@ -905,7 +897,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Post Data for Polyline API provides elevation data along a polyline.
      *
@@ -932,7 +924,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API on successful completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ElevationResult> postDataForPolylineAsync(
@@ -949,7 +941,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Post Data for Polyline API provides elevation data along a polyline.
      *
@@ -977,7 +969,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API on successful completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ElevationResult> postDataForPolylineAsync(
@@ -994,7 +986,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Post Data for Polyline API provides elevation data along a polyline.
      *
@@ -1030,7 +1022,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Post Data for Polyline API provides elevation data along a polyline.
      *
@@ -1058,7 +1050,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ElevationResult> postDataForPolylineWithResponse(
@@ -1067,7 +1059,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Bounding Box API provides elevation data at equally spaced locations within a bounding box. A
      * bounding box is defined by the coordinates for two corners (southwest, northeast) and then subsequently divided
@@ -1090,8 +1082,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ElevationResult>> getDataForBoundingBoxWithResponseAsync(
@@ -1114,7 +1105,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Bounding Box API provides elevation data at equally spaced locations within a bounding box. A
      * bounding box is defined by the coordinates for two corners (southwest, northeast) and then subsequently divided
@@ -1138,8 +1129,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ElevationResult>> getDataForBoundingBoxWithResponseAsync(
@@ -1160,7 +1150,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Bounding Box API provides elevation data at equally spaced locations within a bounding box. A
      * bounding box is defined by the coordinates for two corners (southwest, northeast) and then subsequently divided
@@ -1183,7 +1173,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API on successful completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ElevationResult> getDataForBoundingBoxAsync(
@@ -1200,7 +1190,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Bounding Box API provides elevation data at equally spaced locations within a bounding box. A
      * bounding box is defined by the coordinates for two corners (southwest, northeast) and then subsequently divided
@@ -1224,7 +1214,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API on successful completion of {@link Mono}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ElevationResult> getDataForBoundingBoxAsync(
@@ -1241,7 +1231,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Bounding Box API provides elevation data at equally spaced locations within a bounding box. A
      * bounding box is defined by the coordinates for two corners (southwest, northeast) and then subsequently divided
@@ -1272,7 +1262,7 @@ public final class ElevationsImpl {
     }
 
     /**
-     * **Applies to**: S1 pricing tier.
+     * **Applies to:** see pricing [tiers](https://aka.ms/AzureMapsPricingTier).
      *
      * <p>The Get Data for Bounding Box API provides elevation data at equally spaced locations within a bounding box. A
      * bounding box is defined by the coordinates for two corners (southwest, northeast) and then subsequently divided
@@ -1296,7 +1286,7 @@ public final class ElevationsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API along with {@link Response}.
+     * @return the response from a successful Get Data for Bounding Box API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ElevationResult> getDataForBoundingBoxWithResponse(
