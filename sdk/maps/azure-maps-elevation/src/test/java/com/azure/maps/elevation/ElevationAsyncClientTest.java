@@ -79,52 +79,6 @@ public class ElevationAsyncClientTest extends ElevationClientTestBase {
             });
     }
 
-    // Test async post data for points
-    @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
-    public void testAsyncPostDataForPoints(HttpClient httpClient, ElevationServiceVersion serviceVersion) throws IOException {
-        ElevationAsyncClient client = getElevationAsyncClient(httpClient, serviceVersion);
-        StepVerifier.create(client.postDataForPoints(Arrays.asList(new GeoPosition(-121.66853362143819, 46.846464798637129),
-                new GeoPosition(-121.68853362143818, 46.856464798637127))))
-            .assertNext(actualResults -> {
-                try {
-                    validatePostDataForPoints(TestUtils.getExpectedPostDataForPoints(), actualResults);
-                } catch (IOException e) {
-                    Assertions.fail("Unable to get post data for points");
-                }
-            }).verifyComplete();
-    }
-
-    // Test async post data for points with response
-    // Case 1: 200
-    @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
-    public void testAsyncPostDataForPointsWithResponse(HttpClient httpClient, ElevationServiceVersion serviceVersion) {
-        ElevationAsyncClient client = getElevationAsyncClient(httpClient, serviceVersion);
-        StepVerifier.create(client.postDataForPointsWithResponse(Arrays.asList(new GeoPosition(-121.66853362143819, 46.846464798637129),
-                new GeoPosition(-121.68853362143818, 46.856464798637127)), null))
-            .assertNext(response -> {
-                try {
-                    validatePostDataForPointsWithResponse(TestUtils.getExpectedPostDataForPoints(), 200, response);
-                } catch (IOException e) {
-                    Assertions.fail("Unable to get post data for points");
-                }
-            }).verifyComplete();
-    }
-
-    // Case 2: 400 invalid input
-    @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
-    public void testAsyncInvalidPostDataForPointsWithResponse(HttpClient httpClient, ElevationServiceVersion serviceVersion) {
-        ElevationAsyncClient client = getElevationAsyncClient(httpClient, serviceVersion);
-        StepVerifier.create(client.postDataForPointsWithResponse(Arrays.asList(new GeoPosition(-10000000, 46.846464798637129),
-                new GeoPosition(-121.68853362143818, 46.856464798637127)), null))
-            .verifyErrorSatisfies(ex -> {
-                final HttpResponseException httpResponseException = (HttpResponseException) ex;
-                assertEquals(400, httpResponseException.getResponse().getStatusCode());
-            });
-    }
-
     // Test async get data for polyline
     @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
     @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
@@ -168,52 +122,6 @@ public class ElevationAsyncClientTest extends ElevationClientTestBase {
         StepVerifier.create(client.getDataForPolylineWithResponse(Arrays.asList(
                 new GeoPosition(-1000000,46.84646479863713),
                 new GeoPosition(-121.65853362143818,46.85646479863713)), 5, null))
-            .verifyErrorSatisfies(ex -> {
-                final HttpResponseException httpResponseException = (HttpResponseException) ex;
-                assertEquals(400, httpResponseException.getResponse().getStatusCode());
-            });
-    }
-
-    // Test post data for polyline
-    @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
-    public void testAsyncPostDataForPolyline(HttpClient httpClient, ElevationServiceVersion serviceVersion) throws IOException {
-        ElevationAsyncClient client = getElevationAsyncClient(httpClient, serviceVersion);
-        StepVerifier.create(client.postDataForPolyline(Arrays.asList(new GeoPosition(-121.66853362143819, 46.846464798637129),
-                new GeoPosition(-121.68853362143818, 46.856464798637127)), 5))
-            .assertNext(actualResults -> {
-                try {
-                    validatePostDataForPolyline(TestUtils.getExpectedPostDataForPolyline(), actualResults);
-                } catch (IOException e) {
-                    Assertions.fail("Unable to get post data for polyline");
-                }
-            }).verifyComplete();
-    }
-
-    // Test async post data for polyline with response
-    // Case 1: 200
-    @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
-    public void testAsyncPostDataForPolylineWithResponse(HttpClient httpClient, ElevationServiceVersion serviceVersion) {
-        ElevationAsyncClient client = getElevationAsyncClient(httpClient, serviceVersion);
-        StepVerifier.create(client.postDataForPolylineWithResponse(Arrays.asList(new GeoPosition(-121.66853362143819, 46.846464798637129),
-                new GeoPosition(-121.68853362143818, 46.856464798637127)), 5, null))
-            .assertNext(response -> {
-                try {
-                    validatePostDataForPolylineWithResponse(TestUtils.getExpectedPostDataForPolyline(), 200, response);
-                } catch (IOException e) {
-                    Assertions.fail("Unable to get post data for polyline");
-                }
-            }).verifyComplete();
-    }
-
-    // Case 2: 400 invalid input
-    @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
-    public void testAsyncInvalidPostDataForPolylineWithResponse(HttpClient httpClient, ElevationServiceVersion serviceVersion) {
-        ElevationAsyncClient client = getElevationAsyncClient(httpClient, serviceVersion);
-        StepVerifier.create(client.postDataForPolylineWithResponse(Arrays.asList(new GeoPosition(-121.66853362143819, 46.846464798637129),
-                new GeoPosition(-1000000, 46.856464798637127)), 5, null))
             .verifyErrorSatisfies(ex -> {
                 final HttpResponseException httpResponseException = (HttpResponseException) ex;
                 assertEquals(400, httpResponseException.getResponse().getStatusCode());

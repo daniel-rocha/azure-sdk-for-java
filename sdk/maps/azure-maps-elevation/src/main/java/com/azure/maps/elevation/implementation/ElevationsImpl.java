@@ -69,7 +69,7 @@ public final class ElevationsImpl {
                 @HeaderParam("x-ms-client-id") String clientId,
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("format") JsonFormat format,
-                @QueryParam(value = "points", encoded = true) String points,
+                @QueryParam(value = "points") String points,
                 @HeaderParam("Accept") String accept,
                 Context context);
 
@@ -93,7 +93,7 @@ public final class ElevationsImpl {
                 @HeaderParam("x-ms-client-id") String clientId,
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("format") JsonFormat format,
-                @QueryParam(value = "lines", encoded = true) String lines,
+                @QueryParam(value = "lines") String lines,
                 @QueryParam("samples") Integer samples,
                 @HeaderParam("Accept") String accept,
                 Context context);
@@ -1133,7 +1133,7 @@ public final class ElevationsImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ElevationResult>> getDataForBoundingBoxWithResponseAsync(
-            JsonFormat format, List<Float> bounds, int rows, int columns, Context context) {
+            JsonFormat format, List<Double> bounds, int rows, int columns, Context context) {
         final String accept = "application/json";
         String boundsConverted =
                 JacksonAdapter.createDefaultSerializerAdapter().serializeList(bounds, CollectionFormat.CSV);
@@ -1218,7 +1218,7 @@ public final class ElevationsImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ElevationResult> getDataForBoundingBoxAsync(
-            JsonFormat format, List<Float> bounds, int rows, int columns, Context context) {
+            JsonFormat format, List<Double> bounds, int rows, int columns, Context context) {
         return getDataForBoundingBoxWithResponseAsync(format, bounds, rows, columns, context)
                 .flatMap(
                         (Response<ElevationResult> res) -> {
@@ -1290,7 +1290,7 @@ public final class ElevationsImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ElevationResult> getDataForBoundingBoxWithResponse(
-            JsonFormat format, List<Float> bounds, int rows, int columns, Context context) {
+            JsonFormat format, List<Double> bounds, int rows, int columns, Context context) {
         return getDataForBoundingBoxWithResponseAsync(format, bounds, rows, columns, context).block();
     }
 }

@@ -11,22 +11,22 @@ import com.azure.maps.elevation.implementation.models.LatLongPairAbbreviated;
 public class Utility {
     
     public static List<LatLongPairAbbreviated> toLatLongPairAbbreviated(List<GeoPosition> points) {
-        List<LatLongPairAbbreviated> points2 = new ArrayList<>();
+        List<LatLongPairAbbreviated> latLongPairList = new ArrayList<>();
         for (GeoPosition point : points) {
-            points2.add(new LatLongPairAbbreviated().setLat(point.getLatitude()).setLon(point.getLongitude()));
+            latLongPairList.add(new LatLongPairAbbreviated().setLat(point.getLatitude()).setLon(point.getLongitude()));
         }
-        return points2;
+        return latLongPairList;
     }
 
     public static List<String> geoPositionToString(List<GeoPosition> points) {
-        List<String> points2 = new ArrayList<>();
+        List<String> stringPointsList = new ArrayList<>();
         for (GeoPosition point : points) {
-            points2.add(point.getLongitude() + "," + point.getLatitude());
+            stringPointsList.add(point.getLongitude() + "," + point.getLatitude());
         }
-        return points2;
+        return stringPointsList;
     }
 
-    public static List<Float> geoBoundingBoxToFloat(GeoBoundingBox boundingBox) {
-        return Arrays.asList((float) boundingBox.getWest(), (float) boundingBox.getSouth(), (float) boundingBox.getEast(), (float) boundingBox.getNorth());
+    public static List<Double> geoBoundingBoxToFloat(GeoBoundingBox boundingBox) {
+        return Arrays.asList(boundingBox.getWest(), boundingBox.getSouth(), boundingBox.getEast(), boundingBox.getNorth());
     }
 }

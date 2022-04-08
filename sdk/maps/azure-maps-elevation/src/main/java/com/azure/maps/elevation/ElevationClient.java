@@ -89,59 +89,6 @@ public final class ElevationClient {
     /**
      * **Applies to**: S1 pricing tier.
      *
-     * <p>The Post Data for Points API provides elevation data for multiple points. A point is defined lon/lat
-     * coordinate format.
-     *
-     * <p>Use the POST endpoint only if you intend to pass multiple points in the request. If you intend to pass a
-     * single coordinate into the API, use the [GET Data For Points
-     * API](https://docs.microsoft.com/rest/api/maps/elevation/getdataforpoints).
-     * 
-     * <p>The result will be in the same sequence of points listed in the request.
-     *
-     * @param points The string representation of a list of points. A point is defined in lon/lat WGS84 coordinate
-     *     reference system format. Each points in a list should be separated by the pipe ('|') character. The number of
-     *     points that can be requested in a POST request ranges from 2 to 2,000. The resolution of the elevation data
-     *     will be the highest for a single point and will decrease if multiple points are spread further apart.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorResponseException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ElevationResult postDataForPoints(List<GeoPosition> points) {
-        return this.asyncClient.postDataForPoints(points).block();
-    }
-
-    /**
-     * **Applies to**: S1 pricing tier.
-     *
-     * <p>The Post Data for Points API provides elevation data for multiple points. A point is defined lon/lat
-     * coordinate format.
-     *
-     * <p>Use the POST endpoint only if you intend to pass multiple points in the request. If you intend to pass a
-     * single coordinate into the API, use the [GET Data For Points
-     * API](https://docs.microsoft.com/rest/api/maps/elevation/getdataforpoints).
-     *
-     * <p>The result will be in the same sequence of points listed in the request.
-     *
-     * @param points The string representation of a list of points. A point is defined in lon/lat WGS84 coordinate
-     *     reference system format. Each points in a list should be separated by the pipe ('|') character. The number of
-     *     points that can be requested in a POST request ranges from 2 to 2,000. The resolution of the elevation data
-     *     will be the highest for a single point and will decrease if multiple points are spread further apart.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorResponseException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ElevationResult> postDataForPointsWithResponse(List<GeoPosition> points, Context context) {
-        return this.asyncClient.postDataForPointsWithResponse(points, context).block();
-    }
-
-    /**
-     * **Applies to**: S1 pricing tier.
-     *
      * <p>The Get Data for Polyline API provides elevation data along a polyline.
      *
      * <p>A polyline is defined by passing in between 2 and N endpoint coordinates separated by a pipe ('|') character.
@@ -206,75 +153,6 @@ public final class ElevationClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ElevationResult> getDataForPolylineWithResponse(List<GeoPosition> lines, Integer samples, Context context) {
         return this.asyncClient.getDataForPolylineWithResponse(lines, samples, context).block();
-    }
-
-    /**
-     * **Applies to**: S1 pricing tier.
-     *
-     * <p>The Post Data for Polyline API provides elevation data along a polyline.
-     *
-     * <p>A polyline is defined by passing in between 2 and N endpoint coordinates separated by a pipe ('|') character.
-     * In addition to passing in endpoints, customers can specify the number of sample points that will be used to
-     * divide polyline into equally spaced segments.
-     *
-     * <p>Elevation data at both start and end points, as well as equally spaced points along the polyline will be
-     * returned. The results will be listed in the direction from the first endpoint towards the last endpoint. A line
-     * between two endpoints is a straight Cartesian line, the shortest line between those two points in the coordinate
-     * reference system. Note that the point is chosen based on Euclidean distance and may markedly differ from the
-     * geodesic path along the curved surface of the reference ellipsoid.
-     *
-     * @param polyline The string representation of a polyline path. A polyline is defined by endpoint coordinates, with
-     *     each endpoint separated by a pipe ('|') character. The polyline should be defined in the following format:
-     *     `[longitude_point1, latitude_point1 | longitude_point2, latitude_point2, ..., longitude_pointN,
-     *     latitude_pointN]`. The longitude and latitude values refer to the World Geodetic System (WGS84) coordinate
-     *     reference system. The resolution of the data used to compute the elevation will depend on the distance
-     *     between the endpoints.
-     * @param samples The samples parameter specifies the number of equally spaced points at which elevation values
-     *     should be provided along a polyline path. The number of samples should range from 2 to 2,000. Default value
-     *     is 10.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorResponseException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ElevationResult postDataForPolyline(List<GeoPosition> polyline, Integer samples) {
-        return this.asyncClient.postDataForPolyline(polyline, samples).block();
-    }
-
-    /**
-     * **Applies to**: S1 pricing tier.
-     *
-     * <p>The Post Data for Polyline API provides elevation data along a polyline.
-     *
-     * <p>A polyline is defined by passing in between 2 and N endpoint coordinates separated by a pipe ('|') character.
-     * In addition to passing in endpoints, customers can specify the number of sample points that will be used to
-     * divide polyline into equally spaced segments.
-     *
-     * <p>Elevation data at both start and end points, as well as equally spaced points along the polyline will be
-     * returned. The results will be listed in the direction from the first endpoint towards the last endpoint. A line
-     * between two endpoints is a straight Cartesian line, the shortest line between those two points in the coordinate
-     * reference system. Note that the point is chosen based on Euclidean distance and may markedly differ from the
-     * geodesic path along the curved surface of the reference ellipsoid.
-     *
-     * @param polyline The string representation of a polyline path. A polyline is defined by endpoint coordinates, with
-     *     each endpoint separated by a pipe ('|') character. The polyline should be defined in the following format:
-     *     `[longitude_point1, latitude_point1 | longitude_point2, latitude_point2, ..., longitude_pointN,
-     *     latitude_pointN]`. The longitude and latitude values refer to the World Geodetic System (WGS84) coordinate
-     *     reference system. The resolution of the data used to compute the elevation will depend on the distance
-     *     between the endpoints.
-     * @param samples The samples parameter specifies the number of equally spaced points at which elevation values
-     *     should be provided along a polyline path. The number of samples should range from 2 to 2,000. Default value
-     *     is 10.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorResponseException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from a successful Get Data for Bounding Box API.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ElevationResult> postDataForPolylineWithResponse(List<GeoPosition> polyline, Integer samples, Context context) {
-        return this.asyncClient.postDataForPolylineWithResponse(polyline, samples, context).block();
     }
 
     /**

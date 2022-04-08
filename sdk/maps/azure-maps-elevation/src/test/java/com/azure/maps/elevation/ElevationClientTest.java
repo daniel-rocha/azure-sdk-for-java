@@ -52,38 +52,6 @@ public class ElevationClientTest extends ElevationClientTestBase {
         assertEquals(400, httpResponseException.getResponse().getStatusCode());
     }
 
-    // Test post data for points
-    @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
-    public void testPostDataForPoints(HttpClient httpClient, ElevationServiceVersion serviceVersion) throws IOException {
-        client = getElevationClient(httpClient, serviceVersion);
-        ElevationResult actualResult = client.postDataForPoints(Arrays.asList(new GeoPosition(-121.66853362143819, 46.846464798637129),
-            new GeoPosition(-121.68853362143818, 46.856464798637127)));
-        ElevationResult expectedResult = TestUtils.getExpectedPostDataForPoints();
-        validatePostDataForPoints(actualResult, expectedResult);
-    }
-
-    // Test post data for points with response
-    // Case 1: 200
-    @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
-    public void testPostDataForPointsWithResponse(HttpClient httpClient, ElevationServiceVersion serviceVersion) throws IOException {
-        client = getElevationClient(httpClient, serviceVersion);
-        validatePostDataForPointsWithResponse(TestUtils.getExpectedPostDataForPoints(), 200, client.postDataForPointsWithResponse(Arrays.asList(new GeoPosition(-121.66853362143819, 46.846464798637129),
-            new GeoPosition(-121.68853362143818, 46.856464798637127)), null));
-    }
-
-    // Case 2: Respone 400, incorrect input
-    @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
-    public void testInvalidPostDataForPointsWithResponse(HttpClient httpClient, ElevationServiceVersion serviceVersion) throws IOException {
-        client = getElevationClient(httpClient, serviceVersion);
-        final HttpResponseException httpResponseException = assertThrows(HttpResponseException.class,
-            () -> client.postDataForPointsWithResponse(Arrays.asList(new GeoPosition(-10000000, 46.846464798637129),
-            new GeoPosition(-121.68853362143818, 46.856464798637127)), null));
-        assertEquals(400, httpResponseException.getResponse().getStatusCode());
-    }
-
     // Test get data for polyline
     @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
     @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
@@ -116,38 +84,6 @@ public class ElevationClientTest extends ElevationClientTestBase {
             () -> client.getDataForPolylineWithResponse(Arrays.asList(
                 new GeoPosition(-1000000000,46.84646479863713),
                 new GeoPosition(-121.65853362143818,46.85646479863713)), 5, null));
-        assertEquals(400, httpResponseException.getResponse().getStatusCode());
-    }
-
-    // Test post data for polyline
-    @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
-    public void testPostDataForPolyline(HttpClient httpClient, ElevationServiceVersion serviceVersion) throws IOException {
-        client = getElevationClient(httpClient, serviceVersion);
-        ElevationResult actualResult = client.postDataForPolyline(Arrays.asList(new GeoPosition(-121.66853362143819, 46.846464798637129),
-            new GeoPosition(-121.68853362143818, 46.856464798637127)), 5);
-        ElevationResult expectedResult = TestUtils.getExpectedPostDataForPolyline();
-        validatePostDataForPolyline(actualResult, expectedResult);
-    }
-
-    // Test post data for polyline with response
-    // Case 1: 200
-    @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
-    public void testPostDataForPolylineWithResponse(HttpClient httpClient, ElevationServiceVersion serviceVersion) throws IOException {
-        client = getElevationClient(httpClient, serviceVersion);
-        validatePostDataForPolylineWithResponse(TestUtils.getExpectedPostDataForPolyline(), 200, client.postDataForPolylineWithResponse(Arrays.asList(new GeoPosition(-121.66853362143819, 46.846464798637129),
-            new GeoPosition(-121.68853362143818, 46.856464798637127)), 5, null));
-    }
-
-    // Case 2: Respone 400, incorrect input
-    @ParameterizedTest(name = DISPLAY_NAME_WITH_ARGUMENTS)
-    @MethodSource("com.azure.maps.elevation.TestUtils#getTestParameters")
-    public void testInvalidPostDataForPolylineWithResponse(HttpClient httpClient, ElevationServiceVersion serviceVersion) throws IOException {
-        client = getElevationClient(httpClient, serviceVersion);
-        final HttpResponseException httpResponseException = assertThrows(HttpResponseException.class,
-            () -> client.postDataForPolylineWithResponse(Arrays.asList(new GeoPosition(-121.66853362143819, 46.846464798637129),
-            new GeoPosition(-1000000000, 46.856464798637127)), 5, null));
         assertEquals(400, httpResponseException.getResponse().getStatusCode());
     }
 
