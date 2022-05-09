@@ -1,4 +1,4 @@
-package com.azure.maps.elevation;
+package com.azure.maps.timezone;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -7,13 +7,13 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 
 import org.junit.jupiter.api.Test;
 
-public class ElevationClientBuilderTest {
-    // Test for null elevationClientId, the client ID value
+public class TimezoneClientBuilderTest {
+    // Test for null timezoneClientId, the client ID value
     @Test
-    public void missingMapsClientId() {
+    public void missingtimezoneClientId() {
         assertThrows(NullPointerException.class, () -> {
-            final ElevationClientBuilder builder = new ElevationClientBuilder();
-            builder.elevationClientId(null);
+            final TimezoneClientBuilder builder = new TimezoneClientBuilder();
+            builder.timezoneClientId(null);
         });
     }
 
@@ -21,7 +21,7 @@ public class ElevationClientBuilderTest {
     @Test
     public void missingEndpoint() {
         assertThrows(NullPointerException.class, () -> {
-            final ElevationClientBuilder builder = new ElevationClientBuilder();
+            final TimezoneClientBuilder builder = new TimezoneClientBuilder();
             builder.endpoint(null);
         });
     }
@@ -30,7 +30,7 @@ public class ElevationClientBuilderTest {
     @Test
     public void missingPipeline() {
         assertThrows(NullPointerException.class, () -> {
-            final ElevationClientBuilder builder = new ElevationClientBuilder();
+            final TimezoneClientBuilder builder = new TimezoneClientBuilder();
             builder.pipeline(null);
         });
     }
@@ -39,7 +39,7 @@ public class ElevationClientBuilderTest {
     @Test
     public void missingHttpClient() {
         assertThrows(NullPointerException.class, () -> {
-            final ElevationClientBuilder builder = new ElevationClientBuilder();
+            final TimezoneClientBuilder builder = new TimezoneClientBuilder();
             builder.httpClient(null);
         });
     }
@@ -48,7 +48,7 @@ public class ElevationClientBuilderTest {
     @Test
     public void missingConfiguration() {
         assertThrows(NullPointerException.class, () -> {
-            final ElevationClientBuilder builder = new ElevationClientBuilder();
+            final TimezoneClientBuilder builder = new TimezoneClientBuilder();
             builder.configuration(null);
         });
     }
@@ -57,7 +57,7 @@ public class ElevationClientBuilderTest {
     @Test
     public void missingHttpLogOptions() {
         assertThrows(NullPointerException.class, () -> {
-            final ElevationClientBuilder builder = new ElevationClientBuilder();
+            final TimezoneClientBuilder builder = new TimezoneClientBuilder();
             builder.httpLogOptions(null);
         });
     }
@@ -66,7 +66,7 @@ public class ElevationClientBuilderTest {
     @Test
     public void missingRetryPolicy() {
         assertThrows(NullPointerException.class, () -> {
-            final ElevationClientBuilder builder = new ElevationClientBuilder();
+            final TimezoneClientBuilder builder = new TimezoneClientBuilder();
             builder.retryPolicy(null);
         });
     }
@@ -75,7 +75,7 @@ public class ElevationClientBuilderTest {
     @Test
     public void missingClientOptions() {
         assertThrows(NullPointerException.class, () -> {
-            final ElevationClientBuilder builder = new ElevationClientBuilder();
+            final TimezoneClientBuilder builder = new TimezoneClientBuilder();
             builder.clientOptions(null);
         });
     }
@@ -84,28 +84,28 @@ public class ElevationClientBuilderTest {
     @Test
     public void missingAddPolicy() {
         assertThrows(NullPointerException.class, () -> {
-            final ElevationClientBuilder builder = new ElevationClientBuilder();
+            final TimezoneClientBuilder builder = new TimezoneClientBuilder();
             builder.addPolicy(null);
         });
     }
 
-    // Test for null map id, valid token credential
+    // Test for null timezone id, valid token credential
     @Test
-    public void missingMapsClientIdValidTokenCredential() {
+    public void missingTimezoneClientIdValidTokenCredential() {
         assertThrows(IllegalArgumentException.class, () -> {
-            final ElevationClientBuilder builder = new ElevationClientBuilder();
+            final TimezoneClientBuilder builder = new TimezoneClientBuilder();
             DefaultAzureCredential tokenCredential = new DefaultAzureCredentialBuilder().build();
             builder.credential(tokenCredential);
             builder.buildClient();
         });
     }
 
-    // Test for null key credential and null token credential despite valid mapsClientId
+    // Test for null key credential and null token credential despite valid timezoneClientId
     @Test
     public void missingCredentials() {
         assertThrows(IllegalArgumentException.class, () -> {
-            final ElevationClientBuilder builder = new ElevationClientBuilder();
-            builder.elevationClientId("elevationClientId");
+            final TimezoneClientBuilder builder = new TimezoneClientBuilder();
+            builder.timezoneClientId("timezoneClientId");
             builder.buildClient();
         });
     }
