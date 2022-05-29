@@ -3,15 +3,12 @@ package com.azure.maps.render;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Arrays;
-import java.util.List;
 
 import com.azure.core.exception.HttpResponseException;
 import com.azure.core.http.HttpClient;
-import com.azure.maps.render.implementation.helpers.Utility;
-import com.azure.maps.render.models.BoundingBox;
+import com.azure.core.models.GeoBoundingBox;
 import com.azure.maps.render.models.Copyright;
 import com.azure.maps.render.models.CopyrightCaption;
 import com.azure.maps.render.models.MapAttribution;
@@ -22,7 +19,7 @@ import com.azure.maps.render.models.MapTileset;
 import com.azure.maps.render.models.RasterTileFormat;
 import com.azure.maps.render.models.StaticMapLayer;
 import com.azure.maps.render.models.TileIndex;
-import com.azure.maps.render.models.TilesetID;
+import com.azure.maps.render.models.TilesetId;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -41,11 +38,12 @@ public class RenderClientTest extends RenderClientTestBase {
     public void testGetMapTile(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
         MapTileOptions mapTileOptions = new MapTileOptions();
-        mapTileOptions.setTilesetId(TilesetID.MICROSOFT_BASE_ROAD);
+        mapTileOptions.setTilesetId(TilesetId.MICROSOFT_BASE_ROAD);
         mapTileOptions.setTileIndex(new TileIndex().setX(10).setY(22).setZ(6));
-        InputStream actualResult = client.getMapTile(mapTileOptions);
-        validateGetMapTile(actualResult);
-        actualResult.close();
+        try(ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
+            client.getMapTile(stream, mapTileOptions);
+            validateGetMapTile(stream.toByteArray());
+        }
     }
 
     // Test get map tile with response
@@ -55,9 +53,11 @@ public class RenderClientTest extends RenderClientTestBase {
     public void testGetMapTileWithResponse(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
         MapTileOptions mapTileOptions = new MapTileOptions();
-        mapTileOptions.setTilesetId(TilesetID.MICROSOFT_BASE_ROAD);
+        mapTileOptions.setTilesetId(TilesetId.MICROSOFT_BASE_ROAD);
         mapTileOptions.setTileIndex(new TileIndex().setX(10).setY(22).setZ(6));
-        validateGetMapTileWithResponse(200, client.getMapTileWithResponse(mapTileOptions, null));
+        try(ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
+            validateGetMapTileWithResponse(200, client.getMapTileWithResponse(stream, mapTileOptions, null), stream);
+        }
     }
 
     // Case 2: Respone 400, incorrect input
@@ -66,11 +66,13 @@ public class RenderClientTest extends RenderClientTestBase {
     public void testInvalidGetMapTileWithResponse(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
         MapTileOptions mapTileOptions = new MapTileOptions();
-        mapTileOptions.setTilesetId(TilesetID.MICROSOFT_BASE_ROAD);
+        mapTileOptions.setTilesetId(TilesetId.MICROSOFT_BASE_ROAD);
         mapTileOptions.setTileIndex(new TileIndex().setX(10).setY(22).setZ(-1000));
-        final HttpResponseException httpResponseException = assertThrows(HttpResponseException.class,
-                () -> client.getMapTileWithResponse(mapTileOptions, null));
+        try(ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
+            final HttpResponseException httpResponseException = assertThrows(HttpResponseException.class,
+                () -> client.getMapTileWithResponse(stream, mapTileOptions, null));
             assertEquals(400, httpResponseException.getResponse().getStatusCode());
+        }
     }
 
     // Test get map tileset
@@ -78,8 +80,8 @@ public class RenderClientTest extends RenderClientTestBase {
     @MethodSource("com.azure.maps.render.TestUtils#getTestParameters")
     public void testGetMapTileset(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
-        new TilesetID();
-        MapTileset actualResult = client.getMapTileset(TilesetID.MICROSOFT_BASE);
+        new TilesetId();
+        MapTileset actualResult = client.getMapTileset(TilesetId.MICROSOFT_BASE);
         MapTileset expectedResult = TestUtils.getExpectedMapTileset();
         validateGetMapTileset(expectedResult, actualResult);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
     }
@@ -90,8 +92,8 @@ public class RenderClientTest extends RenderClientTestBase {
     @MethodSource("com.azure.maps.render.TestUtils#getTestParameters")
     public void testGetMapTilesetWithResponse(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
-        new TilesetID();
-        validateGetMapTilesetWithResponse(TestUtils.getExpectedMapTileset(), 200, client.getMapTilesetWithResponse(TilesetID.MICROSOFT_BASE, null));
+        new TilesetId();
+        validateGetMapTilesetWithResponse(TestUtils.getExpectedMapTileset(), 200, client.getMapTilesetWithResponse(TilesetId.MICROSOFT_BASE, null));
     }
 
     // Case 2: Respone 400, incorrect input
@@ -100,7 +102,7 @@ public class RenderClientTest extends RenderClientTestBase {
     public void testInvalidGetMapTilesetWithResponse(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
         final HttpResponseException httpResponseException = assertThrows(HttpResponseException.class,
-                () -> client.getMapTilesetWithResponse(new TilesetID(), null));
+                () -> client.getMapTilesetWithResponse(new TilesetId(), null));
             assertEquals(400, httpResponseException.getResponse().getStatusCode());
     }
 
@@ -109,9 +111,9 @@ public class RenderClientTest extends RenderClientTestBase {
     @MethodSource("com.azure.maps.render.TestUtils#getTestParameters")
     public void testGetMapAttribution(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
-        List<Double> bounds = Arrays.asList(47.579490,-122.414162,47.668372,-122.247157);
-        new TilesetID();
-        MapAttribution actualResult = client.getMapAttribution(TilesetID.MICROSOFT_BASE, 6, Utility.toBoundingBox(bounds));
+        GeoBoundingBox bounds = new GeoBoundingBox(-122.414162,47.57949,-122.247157,47.668372);
+        new TilesetId();
+        MapAttribution actualResult = client.getMapAttribution(TilesetId.MICROSOFT_BASE, 6, bounds);
         MapAttribution expectedResult = TestUtils.getExpectedMapAttribution();
         validateGetMapAttribution(expectedResult, actualResult);
     }
@@ -122,9 +124,9 @@ public class RenderClientTest extends RenderClientTestBase {
     @MethodSource("com.azure.maps.render.TestUtils#getTestParameters")
     public void testGetMapAttributionWithResponse(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
-        List<Double> bounds = Arrays.asList(47.579490,-122.414162,47.668372,-122.247157);
-        new TilesetID();
-        validateGetMapAttributionWithResponse(TestUtils.getExpectedMapAttribution(), 200, client.getMapAttributionWithResponse(TilesetID.MICROSOFT_BASE, 6, Utility.toBoundingBox(bounds), null));
+        GeoBoundingBox bounds = new GeoBoundingBox(-122.414162,47.57949,-122.247157,47.668372);
+        new TilesetId();
+        validateGetMapAttributionWithResponse(TestUtils.getExpectedMapAttribution(), 200, client.getMapAttributionWithResponse(TilesetId.MICROSOFT_BASE, 6, bounds, null));
     }
 
     // Case 2: Respone 400, incorrect input
@@ -132,9 +134,9 @@ public class RenderClientTest extends RenderClientTestBase {
     @MethodSource("com.azure.maps.render.TestUtils#getTestParameters")
     public void testInvalidGetMapAttributionWithResponse(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
-        List<Double> bounds =  Arrays.asList(47.579490,-122.414162,47.668372,-122.247157);
+        GeoBoundingBox bounds =  new GeoBoundingBox(47.579490,-122.414162,47.668372,-122.247157);
         final HttpResponseException httpResponseException = assertThrows(HttpResponseException.class,
-                () -> client.getMapAttributionWithResponse(new TilesetID(), -100, Utility.toBoundingBox(bounds), null));
+                () -> client.getMapAttributionWithResponse(new TilesetId(), -100, bounds, null));
             assertEquals(400, httpResponseException.getResponse().getStatusCode());
     }
 
@@ -162,15 +164,16 @@ public class RenderClientTest extends RenderClientTestBase {
     @MethodSource("com.azure.maps.render.TestUtils#getTestParameters")
     public void testGetMapStaticImage(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
-        List<Double> bbox = Arrays.asList(1.355233, 42.982261, 24.980233, 56.526017);
+        GeoBoundingBox bbox = new GeoBoundingBox(1.355233, 42.982261, 24.980233, 56.526017);
         new StaticMapLayer();
         new RasterTileFormat();
         MapStaticImageOptions mapStaticImageOptions = new MapStaticImageOptions().setStaticMapLayer(StaticMapLayer.BASIC)
-        .setMapImageStyle(MapImageStyle.MAIN).setZoom(2)
-        .setBoundingBox(Utility.toBoundingBox(bbox)).setRasterTileFormat(RasterTileFormat.PNG);
-        InputStream actualResult = client.getMapStaticImage(mapStaticImageOptions);
-        validateGetMapStaticImage(actualResult);
-        actualResult.close();
+            .setMapImageStyle(MapImageStyle.MAIN).setZoom(2)
+            .setBoundingBox(bbox).setRasterTileFormat(RasterTileFormat.PNG);
+        try(ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
+            client.getMapStaticImage(stream, mapStaticImageOptions);
+            validateGetMapStaticImage(stream.toByteArray());
+        }
     }
 
     // Test get mapstatic image with response
@@ -179,13 +182,15 @@ public class RenderClientTest extends RenderClientTestBase {
     @MethodSource("com.azure.maps.render.TestUtils#getTestParameters")
     public void testGetMapStaticImageWithResponse(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
-        List<Double> bbox = Arrays.asList(1.355233, 42.982261, 24.980233, 56.526017);
+        GeoBoundingBox bbox = new GeoBoundingBox(1.355233, 42.982261, 24.980233, 56.526017);
         new StaticMapLayer();
         new RasterTileFormat();
         MapStaticImageOptions mapStaticImageOptions = new MapStaticImageOptions().setStaticMapLayer(StaticMapLayer.BASIC)
         .setMapImageStyle(MapImageStyle.MAIN).setZoom(2)
-        .setBoundingBox(Utility.toBoundingBox(bbox)).setRasterTileFormat(RasterTileFormat.PNG);
-        validateGetMapStaticImageWithResponse(200, client.getMapStaticImageWithResponse(mapStaticImageOptions, null));
+        .setBoundingBox(bbox).setRasterTileFormat(RasterTileFormat.PNG);
+        try(ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
+            validateGetMapStaticImageWithResponse(200, client.getMapStaticImageWithResponse(stream, mapStaticImageOptions, null), stream);
+        }
     }
 
     // Test get copyright from bounding box
@@ -193,7 +198,7 @@ public class RenderClientTest extends RenderClientTestBase {
     @MethodSource("com.azure.maps.render.TestUtils#getTestParameters")
     public void testGetCopyrightFromBoundingBox(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
-        BoundingBox boundingBox = new BoundingBox(52.41064, 4.84228, 52.41072, 4.84239);
+        GeoBoundingBox boundingBox = new GeoBoundingBox(52.41064, 4.84228, 52.41072, 4.84239);
         Copyright actualResult = client.getCopyrightFromBoundingBox(boundingBox, true);
         Copyright expectedResult = TestUtils.getExpectedCopyrightFromBoundingBox();
         validateGetCopyrightCaptionFromBoundingBox(expectedResult, actualResult);
@@ -205,7 +210,7 @@ public class RenderClientTest extends RenderClientTestBase {
     @MethodSource("com.azure.maps.render.TestUtils#getTestParameters")
     public void testGetCopyrightFromBoundingBoxWithResponse(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
-        BoundingBox boundingBox = new BoundingBox(52.41064, 4.84228, 52.41072, 4.84239);
+        GeoBoundingBox boundingBox = new GeoBoundingBox(52.41064, 4.84228, 52.41072, 4.84239);
         validateGetCopyrightCaptionFromBoundingBoxWithResponse(TestUtils.getExpectedCopyrightFromBoundingBox(), 200, client.getCopyrightFromBoundingBoxWithResponse(boundingBox, true, null));
     }
 
@@ -215,7 +220,7 @@ public class RenderClientTest extends RenderClientTestBase {
     public void testInvalidGetCopyrightFromBoundingBoxWithResponse(HttpClient httpClient, RenderServiceVersion serviceVersion) throws IOException {
         client = getRenderClient(httpClient, serviceVersion);
         final HttpResponseException httpResponseException = assertThrows(HttpResponseException.class,
-                () -> client.getCopyrightFromBoundingBoxWithResponse(new BoundingBox(-100, -100, -100, -100), true, null));
+                () -> client.getCopyrightFromBoundingBoxWithResponse(new GeoBoundingBox(-100, -100, -100, -100), true, null));
             assertEquals(400, httpResponseException.getResponse().getStatusCode());
     }
 

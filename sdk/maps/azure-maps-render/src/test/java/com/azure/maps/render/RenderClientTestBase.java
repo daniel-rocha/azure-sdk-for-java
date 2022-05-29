@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,6 @@ import com.azure.core.http.policy.HttpLogDetailLevel;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.rest.Response;
-import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.test.InterceptorManager;
 import com.azure.core.test.TestBase;
 import com.azure.core.test.TestMode;
@@ -98,16 +97,15 @@ public class RenderClientTestBase extends TestBase {
             : endpoint;
     }
 
-    static void validateGetMapTile(InputStream actual) throws IOException {
+    static void validateGetMapTile(byte[] actual) throws IOException {
         assertNotNull(actual);
-        assertTrue(actual.available() > 0);
-        actual.close();
+        assertTrue(actual.length > 0);
     }
 
-    static void validateGetMapTileWithResponse(int expectedStatusCode, SimpleResponse<InputStream> response) throws IOException {
+    static void validateGetMapTileWithResponse(int expectedStatusCode, Response<Void> response, ByteArrayOutputStream stream) throws IOException {
         assertNotNull(response);
         assertEquals(expectedStatusCode, response.getStatusCode());
-        validateGetMapTile(response.getValue());
+        validateGetMapTile(stream.toByteArray());
     }
 
     static void validateGetMapTileset(MapTileset expected, MapTileset actual) {
@@ -162,16 +160,15 @@ public class RenderClientTestBase extends TestBase {
         validateGetCopyrightCaptionFromBoundingBox(expected, response.getValue());
     }
 
-    static void validateGetMapStaticImage(InputStream actual) throws IOException {
+    static void validateGetMapStaticImage(byte[] actual) throws IOException {
         assertNotNull(actual);
-        assertTrue(actual.available() > 0);
-        actual.close();
+        assertTrue(actual.length > 0);
     }
 
-    static void validateGetMapStaticImageWithResponse(int expectedStatusCode, SimpleResponse<InputStream> response) throws IOException {
+    static void validateGetMapStaticImageWithResponse(int expectedStatusCode, Response<Void> response, ByteArrayOutputStream stream) throws IOException {
         assertNotNull(response);
         assertEquals(expectedStatusCode, response.getStatusCode());
-        validateGetMapTile(response.getValue());
+        validateGetMapStaticImage(stream.toByteArray());
     }
 
     static void validateGetCopyrightForTile(Copyright expected, Copyright actual) {
